@@ -147,6 +147,7 @@ export default function ClientLayout({
   const { vibrate } = useHapticFeedback()
 
   const isAuthPage = pathname?.startsWith("/login") || pathname?.startsWith("/register")
+  const isHomePage = pathname === "/"
 
   useEffect(() => {
     if (auroraRef.current && animConfig.enableGlow) {
@@ -207,7 +208,7 @@ export default function ClientLayout({
     setRadialMenuOpen(!radialMenuOpen)
   }
 
-  if (isAuthPage) {
+  if (isAuthPage || isHomePage) {
     return <>{children}</>
   }
 
