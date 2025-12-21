@@ -4,60 +4,16 @@ import type React from "react"
 import { motion } from "framer-motion"
 import { ArrowRight, Zap, Target, Brain, Shield, Rocket, TrendingUp } from "lucide-react"
 import Link from "next/link"
+import { CommandHero } from "@/components/hero/command-hero"
+import { useLenis } from "@/hooks/use-lenis"
 
 export default function HomePage() {
+  useLenis()
+
   return (
-    <main className="min-h-screen bg-gradient-to-b from-neutral-950 via-neutral-900 to-black text-white overflow-hidden">
-      {/* HERO */}
-      <section className="relative flex flex-col items-center justify-center text-center py-32 px-6 overflow-hidden">
-        {/* Animated background glow */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/20 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[100px]" />
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="relative z-10"
-        >
-          <div className="inline-block mb-4 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm font-semibold">
-            🚀 The Future of CRM is Here
-          </div>
-
-          <h1 className="text-7xl md:text-8xl font-black tracking-tight mb-6 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 bg-clip-text text-transparent">
-            AEON DIAL
-          </h1>
-
-          <p className="text-2xl md:text-3xl font-bold text-white mb-4">
-            The CRM That Makes GoHighLevel Look Like a Toy
-          </p>
-
-          <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed">
-            Built for contractors, call centers, and outbound teams who refuse to settle for mediocrity.
-            <br />
-            <span className="text-orange-400 font-semibold">Real automation. Real intelligence. Real results.</span>
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/dashboard"
-              className="group px-10 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all text-lg font-bold shadow-[0_0_40px_rgba(249,115,22,0.3)] hover:shadow-[0_0_60px_rgba(249,115,22,0.5)] flex items-center justify-center gap-2"
-            >
-              Launch Dashboard
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-
-            <a
-              href="#why-aeon"
-              className="px-10 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-orange-500/50 transition-all text-lg font-semibold backdrop-blur-sm"
-            >
-              See Why We're Better
-            </a>
-          </div>
-        </motion.div>
-      </section>
+    <main className="bg-black text-white">
+      {/* COMMAND HERO */}
+      <CommandHero />
 
       {/* WHY AEON DIAL */}
       <section id="why-aeon" className="relative py-32 px-6 overflow-hidden">
