@@ -3,7 +3,6 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
-import { Geist_Mono as GeistMono } from "next/font/google"
 import {
   Phone,
   Users,
@@ -28,8 +27,6 @@ import { useDeviceCapabilities } from "@/hooks/use-device-capabilities"
 import { getAnimationConfig } from "@/lib/animation-config"
 import { useHapticFeedback } from "@/hooks/use-haptic-feedback"
 import { RadialMobileNav } from "@/components/radial-mobile-nav"
-
-const geistMono = GeistMono({ subsets: ["latin"] })
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: BarChart3 },

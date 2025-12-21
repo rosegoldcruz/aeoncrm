@@ -1,10 +1,10 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist_Mono as GeistMono } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./client-layout"
 
-const geistMono = GeistMono({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Aeon Dialer",
@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistMono.className} bg-neutral-950 text-white antialiased`}>
+      <body className={`${inter.className} bg-neutral-950 text-white antialiased`}>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

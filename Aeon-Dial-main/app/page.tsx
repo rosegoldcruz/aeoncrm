@@ -1,94 +1,201 @@
+"use client"
+
+import type React from "react"
+import { motion } from "framer-motion"
+import { ArrowRight, Zap, Target, Brain, Shield, Rocket, TrendingUp } from "lucide-react"
+import Link from "next/link"
+
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen bg-gradient-to-b from-neutral-950 via-neutral-900 to-black text-white overflow-hidden">
       {/* HERO */}
-      <section className="flex flex-col items-center justify-center text-center py-28 px-6">
-        <h1 className="text-6xl font-extrabold tracking-tight mb-6 bg-gradient-to-r from-purple-500 to-orange-400 bg-clip-text text-transparent">
-          AEON Dial
-        </h1>
-
-        <p className="text-gray-400 text-xl max-w-2xl mb-10 leading-relaxed">
-          A next-generation operating system for contractors, call centers, outbound agents, 
-          and AI-driven business execution.  
-          <br />Built to be fast. Built to scale. Built to dominate.
-        </p>
-
-        <div className="flex gap-4">
-          <a
-            href="/dashboard"
-            className="px-8 py-3 rounded-lg bg-purple-600 hover:bg-purple-700 transition text-lg font-semibold"
-          >
-            Go to Dashboard
-          </a>
-
-          <a
-            href="#features"
-            className="px-8 py-3 rounded-lg bg-white text-black hover:bg-gray-200 transition text-lg font-semibold"
-          >
-            View Features
-          </a>
+      <section className="relative flex flex-col items-center justify-center text-center py-32 px-6 overflow-hidden">
+        {/* Animated background glow */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-orange-500/20 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[100px]" />
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10"
+        >
+          <div className="inline-block mb-4 px-4 py-2 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm font-semibold">
+            🚀 The Future of CRM is Here
+          </div>
+
+          <h1 className="text-7xl md:text-8xl font-black tracking-tight mb-6 bg-gradient-to-r from-orange-500 via-orange-400 to-orange-600 bg-clip-text text-transparent">
+            AEON DIAL
+          </h1>
+
+          <p className="text-2xl md:text-3xl font-bold text-white mb-4">
+            The CRM That Makes GoHighLevel Look Like a Toy
+          </p>
+
+          <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-12 leading-relaxed">
+            Built for contractors, call centers, and outbound teams who refuse to settle for mediocrity.
+            <br />
+            <span className="text-orange-400 font-semibold">Real automation. Real intelligence. Real results.</span>
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/dashboard"
+              className="group px-10 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all text-lg font-bold shadow-[0_0_40px_rgba(249,115,22,0.3)] hover:shadow-[0_0_60px_rgba(249,115,22,0.5)] flex items-center justify-center gap-2"
+            >
+              Launch Dashboard
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            <a
+              href="#why-aeon"
+              className="px-10 py-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-orange-500/50 transition-all text-lg font-semibold backdrop-blur-sm"
+            >
+              See Why We're Better
+            </a>
+          </div>
+        </motion.div>
       </section>
 
-      {/* FEATURES */}
-      <section id="features" className="py-24 px-6 bg-zinc-900 border-t border-zinc-800">
-        <h2 className="text-4xl font-bold text-center mb-16 tracking-tight">
-          Why AEON Dial Exists
-        </h2>
+      {/* WHY AEON DIAL */}
+      <section id="why-aeon" className="relative py-32 px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-900 to-black" />
+        
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+              Why AEON Dial Destroys the Competition
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              This isn't just another CRM. It's a complete operating system built for teams that demand excellence.
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
-          <FeatureCard
-            title="AI Outbound Engine"
-            text="Eliminate manual dialing. Automate outreach. Optimize conversations with real-time AI assistance."
-          />
-          <FeatureCard
-            title="Unified Contractor Dashboard"
-            text="Track leads, quotes, jobs, and team ops in one centralized command center."
-          />
-          <FeatureCard
-            title="Real-Time Intelligence"
-            text="Live ops monitoring, alerts, statuses, timelines, and tactical reporting built into the core."
-          />
-          <FeatureCard
-            title="Operations Workflow"
-            text="Task flows, agent handoff logic, compliance layers, and automated progression through each pipeline."
-          />
-          <FeatureCard
-            title="Integrated Agents"
-            text="AI agents that support lead intake, outbound follow-up, quoting, verification, and customer onboarding."
-          />
-          <FeatureCard
-            title="Enterprise-Grade System"
-            text="Fast, resilient, modern infrastructure built on Next.js & Vercel — optimized for scale."
-          />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <FeatureCard
+              icon={<Zap className="w-8 h-8" />}
+              title="AI-Powered Automation"
+              text="Eliminate manual work. Our AI handles lead routing, follow-ups, and qualification automatically. GoHighLevel wishes they had this."
+            />
+            <FeatureCard
+              icon={<Target className="w-8 h-8" />}
+              title="Built for Contractors"
+              text="Purpose-built for home services, remodeling, and construction. Not a generic tool trying to do everything poorly."
+            />
+            <FeatureCard
+              icon={<Brain className="w-8 h-8" />}
+              title="Real-Time Intelligence"
+              text="Live dashboards, instant alerts, and predictive analytics. Know what's happening before it happens."
+            />
+            <FeatureCard
+              icon={<Shield className="w-8 h-8" />}
+              title="Enterprise Security"
+              text="Bank-level security with role-based access, audit logs, and compliance built in. Your data is locked down."
+            />
+            <FeatureCard
+              icon={<Rocket className="w-8 h-8" />}
+              title="Lightning Fast"
+              text="Built on Next.js 14 and deployed on Vercel's edge network. Sub-100ms response times globally."
+            />
+            <FeatureCard
+              icon={<TrendingUp className="w-8 h-8" />}
+              title="Scales With You"
+              text="From 1 agent to 1,000. From 10 leads to 10,000. The system grows without breaking."
+            />
+          </div>
         </div>
       </section>
 
       {/* ABOUT SECTION */}
-      <section className="py-24 px-6 max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-6">What is AEON Dial?</h2>
-        <p className="text-gray-400 text-lg leading-relaxed">
-          AEON Dial is the front-end activation layer of the Advanced Efficient Optimized Network.
-          It’s built for speed, automation, and executing real operations for contractors,
-          home-service pros, call centers, and AI-driven outbound teams.  
-          <br /><br />
-          This isn’t a CRM. This is a full operating system — one command center powering
-          your entire workflow.
-        </p>
+      <section className="py-32 px-6 bg-gradient-to-b from-black to-neutral-950">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl md:text-6xl font-black mb-8 text-white">
+              What is AEON Dial?
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold text-orange-400">The Complete CRM Operating System</h3>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                AEON Dial is the <span className="text-white font-semibold">Advanced Efficient Optimized Network</span> — 
+                a full-stack CRM built specifically for contractors, home service pros, and outbound sales teams.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed">
+                While GoHighLevel tries to be everything to everyone, we laser-focused on what actually matters:
+                <span className="text-orange-400 font-semibold"> speed, automation, and results</span>.
+              </p>
+              <p className="text-gray-400 text-lg leading-relaxed">
+                Every feature is designed to eliminate busywork, close more deals, and scale your operation without hiring more people.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-orange-500/10 to-orange-600/5 border border-orange-500/20">
+                <h4 className="text-xl font-bold text-orange-400 mb-2">⚡ Built for Speed</h4>
+                <p className="text-gray-400">Sub-second load times. Real-time updates. Zero lag.</p>
+              </div>
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-purple-600/5 border border-purple-500/20">
+                <h4 className="text-xl font-bold text-purple-400 mb-2">🤖 AI-First Design</h4>
+                <p className="text-gray-400">Automation that actually works. Intelligence baked into every feature.</p>
+              </div>
+              <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-blue-600/5 border border-blue-500/20">
+                <h4 className="text-xl font-bold text-blue-400 mb-2">📈 Results-Driven</h4>
+                <p className="text-gray-400">Track what matters. Optimize what works. Scale what wins.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-20 px-6 text-center bg-gradient-to-b from-purple-900/10 to-black">
-        <h2 className="text-4xl font-bold mb-4">Ready to Enter the Command Center?</h2>
-        <p className="text-gray-400 mb-10">
-          Your dashboard is fully operational. Dive into the AEON OS now.
-        </p>
-        <a
-          href="/dashboard"
-          className="px-10 py-4 rounded-xl bg-purple-600 hover:bg-purple-700 transition text-xl font-semibold"
+      <section className="relative py-32 px-6 text-center overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-neutral-950 via-orange-950/20 to-black" />
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-orange-500/10 rounded-full blur-[150px]" />
+        </div>
+        
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="relative z-10 max-w-4xl mx-auto"
         >
-          Launch Dashboard
-        </a>
+          <h2 className="text-5xl md:text-6xl font-black mb-6 text-white">
+            Stop Settling for Less
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-300 mb-4">
+            Your competitors are still using outdated tools.
+          </p>
+          <p className="text-xl md:text-2xl text-orange-400 font-bold mb-12">
+            You're about to leave them in the dust.
+          </p>
+          
+          <Link
+            href="/dashboard"
+            className="inline-flex items-center gap-3 px-12 py-5 rounded-xl bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all text-xl font-bold shadow-[0_0_60px_rgba(249,115,22,0.4)] hover:shadow-[0_0_80px_rgba(249,115,22,0.6)] hover:scale-105"
+          >
+            Launch AEON Dial Now
+            <ArrowRight className="w-6 h-6" />
+          </Link>
+          
+          <p className="mt-8 text-sm text-gray-500">
+            No credit card required • Full access • Built for winners
+          </p>
+        </motion.div>
       </section>
 
       {/* FOOTER */}
@@ -100,11 +207,22 @@ export default function HomePage() {
 }
 
 // Reusable feature card
-function FeatureCard({ title, text }) {
+function FeatureCard({ icon, title, text }: { icon?: React.ReactNode; title: string; text: string }) {
   return (
-    <div className="p-8 rounded-2xl bg-zinc-800 border border-zinc-700 hover:border-purple-500 transition">
-      <h3 className="text-xl font-semibold mb-3">{title}</h3>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.02 }}
+      className="p-8 rounded-2xl bg-gradient-to-br from-neutral-900 to-neutral-950 border border-neutral-800 hover:border-orange-500/50 transition-all group"
+    >
+      {icon && (
+        <div className="mb-4 text-orange-400 group-hover:text-orange-300 transition-colors">
+          {icon}
+        </div>
+      )}
+      <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-orange-400 transition-colors">{title}</h3>
       <p className="text-gray-400 leading-relaxed">{text}</p>
-    </div>
+    </motion.div>
   );
 }
