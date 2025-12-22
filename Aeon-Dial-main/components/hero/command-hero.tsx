@@ -1,41 +1,33 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useScrollProgress } from "@/hooks/use-smooth-scroll"
 import { HeroScene } from "./scene"
 import { MagneticButton } from "./magnetic-button"
+import { PerformanceGovernorState } from "@/hooks/use-performance-governor"
 
-export function CommandHero() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  })
+export function CommandHero({ governor }: { governor: PerformanceGovernorState }) {
+  const scrollProgress = useScrollProgress()
 
-  useEffect(() => {
-    return scrollYProgress.on("change", (latest) => {
-      setScrollProgress(latest)
-    })
-  }, [scrollYProgress])
-
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0])
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95])
+  const opacity = scrollProgress > 0.5 ? 0.8 : scrollProgress > 0.1 ? 1 : 1
+  const scale = scrollProgress > 1 ? 0.95 : 1
 
   return (
-    <div ref={containerRef} className="relative h-[150vh] bg-black">
-      <HeroScene scrollProgress={scrollProgress} />
+    <div className="relative h-[150vh] bg-black">
+      <HeroScene scrollProgress={scrollProgress} governor={governor} />
 
       <motion.div
         className="sticky top-0 h-screen flex flex-col items-center justify-center px-6"
-        style={{ opacity, scale }}
+        style={{
+          opacity,
+          transform: `scale(${scale})`
+        }}
       >
         {/* Nav */}
         <motion.nav
           className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-6 z-50"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.8 * governor.animationScale, delay: 0.2 * governor.animationScale }}
         >
           <div className="text-2xl font-bold tracking-tight text-[#00ff88]">
             AEON DIAL
@@ -66,7 +58,7 @@ export function CommandHero() {
                 className="text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 + i * 0.15 }}
+                transition={{ duration: 0.8 * governor.animationScale, delay: 0.4 + i * 0.15 * governor.animationScale }}
               >
                 {line}
               </motion.h1>
@@ -78,7 +70,7 @@ export function CommandHero() {
             className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0.8 * governor.animationScale, delay: 1.2 * governor.animationScale }}
           >
             AI-powered calling, automation, and customer intelligence — unified.
           </motion.p>
@@ -88,7 +80,7 @@ export function CommandHero() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
+            transition={{ duration: 0.8 * governor.animationScale, delay: 1.4 * governor.animationScale }}
           >
             <MagneticButton href="/dashboard" variant="primary">
               Launch AEON DIAL
@@ -120,7 +112,7 @@ export function CommandHero() {
         <motion.div
           className="absolute bottom-32 left-1/2 -translate-x-1/2 text-center"
           style={{
-            opacity: useTransform(scrollYProgress, [0.3, 0.5, 0.7], [0, 1, 0])
+            opacity: scrollProgress > 0.3 && scrollProgress < 0.7 ? 1 : 0
           }}
         >
           <p className="text-lg text-[#00ff88] font-mono">

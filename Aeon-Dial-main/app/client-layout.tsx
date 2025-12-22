@@ -23,10 +23,13 @@ import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
 import { gsap } from "gsap"
 import { FloatingDialer } from "@/components/floating-dialer"
-import { useDeviceCapabilities } from "@/hooks/use-device-capabilities"
-import { getAnimationConfig } from "@/lib/animation-config"
+import { ScrollProvider } from "@/hooks/use-smooth-scroll"
 import { useHapticFeedback } from "@/hooks/use-haptic-feedback"
-import { RadialMobileNav } from "@/components/radial-mobile-nav"
+import { PerformanceDebugPanel } from "@/components/performance-debug-panel"
+import { useDeviceCapabilities } from "@/hooks/use-device-capabilities"
+import { usePerformanceGovernor } from "@/hooks/use-performance-governor"
+import { getAnimationConfig } from "@/lib/animation-config"
+import { ThumbNavigation } from "@/components/thumb-navigation"
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: BarChart3 },
@@ -138,12 +141,12 @@ export default function ClientLayout({
   const [collapsed, setCollapsed] = useState(false)
   const [expandedMenus, setExpandedMenus] = useState<string[]>([])
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
-  const [radialMenuOpen, setRadialMenuOpen] = useState(false)
   const auroraRef = useRef<HTMLDivElement>(null)
   const navItemsRef = useRef<{ [key: string]: HTMLDivElement | null }>({})
 
   const capabilities = useDeviceCapabilities()
-  const animConfig = getAnimationConfig(capabilities)
+  const [governor, governorActions] = usePerformanceGovernor(capabilities)
+  const animConfig = getAnimationConfig(governor)
   const { vibrate } = useHapticFeedback()
 
   const isAuthPage = pathname?.startsWith("/login") || pathname?.startsWith("/register")
@@ -151,7 +154,7 @@ export default function ClientLayout({
 
   useEffect(() => {
     if (auroraRef.current && animConfig.enableGlow) {
-      const duration = 2 / capabilities.animationScale
+      const duration = 2 / governor.animationScale
       gsap.to(auroraRef.current, {
         duration,
         filter: "hue-rotate(360deg)",
@@ -159,7 +162,7 @@ export default function ClientLayout({
         ease: "none",
       })
     }
-  }, [animConfig.enableGlow, capabilities.animationScale])
+  }, [animConfig.enableGlow, governor.animationScale])
 
   useEffect(() => {
     if (animConfig.enableMicroAnimations) {
@@ -193,59 +196,50 @@ export default function ClientLayout({
         {
           opacity: 1,
           scale: 1.2,
-          duration: 0.6 * capabilities.animationScale,
+          duration: 0.6 * governor.animationScale,
           ease: "power2.out",
           onComplete: () => {
-            gsap.to(auroraRef.current, { opacity: 0.3, scale: 1, duration: 0.4 * capabilities.animationScale })
+            gsap.to(auroraRef.current, { opacity: 0.3, scale: 1, duration: 0.4 * governor.animationScale })
           },
         },
       )
     }
   }
 
-  const handleMobileMenuToggle = () => {
-    vibrate("medium")
-    setRadialMenuOpen(!radialMenuOpen)
-  }
-
   if (isAuthPage || isHomePage) {
-    return <>{children}</>
+    return (
+      <ScrollProvider>
+        {children}
+      </ScrollProvider>
+    )
   }
 
   if (capabilities.isMobile) {
     return (
-      <div className="flex flex-col h-screen overflow-hidden">
-        <header className="h-16 bg-neutral-900 border-b border-neutral-800 flex items-center justify-between px-4 flex-shrink-0">
-          <div>
-            <h1 className="text-lg font-bold text-orange-500">AEON DIAL</h1>
-            <p className="text-[10px] text-neutral-500">v1.0.0</p>
-          </div>
+      <ScrollProvider>
+        <div className="flex flex-col h-screen overflow-hidden">
+          <header className="h-16 bg-neutral-900 border-b border-neutral-800 flex items-center justify-center px-4 flex-shrink-0">
+            <div className="text-center">
+              <h1 className="text-lg font-bold text-orange-500">AEON DIAL</h1>
+              <p className="text-[10px] text-neutral-500">v1.0.0</p>
+            </div>
+          </header>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleMobileMenuToggle}
-            className="text-neutral-400 hover:text-orange-500 hover:bg-neutral-800"
-          >
-            <Menu className="w-6 h-6" />
-          </Button>
-        </header>
+          <main className="flex-1 overflow-y-auto bg-neutral-950">{children}</main>
 
-        <main className="flex-1 overflow-y-auto bg-neutral-950">{children}</main>
+          <ThumbNavigation navigation={navigation.filter((item) => !item.submenu)} />
 
-        <RadialMobileNav
-          navigation={navigation.filter((item) => !item.submenu)}
-          isOpen={radialMenuOpen}
-          onClose={() => setRadialMenuOpen(false)}
-        />
+          <PerformanceDebugPanel />
 
-        <FloatingDialer />
-      </div>
+          <FloatingDialer />
+        </div>
+      </ScrollProvider>
     )
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <ScrollProvider>
+      <div className="flex h-screen overflow-hidden">
       <motion.aside
         initial={false}
         animate={{ width: collapsed ? 80 : 256 }}
@@ -428,7 +422,7 @@ export default function ClientLayout({
               <span className="text-xs text-neutral-400">System Online</span>
             </div>
             <div className="text-xs text-neutral-500">
-              GPU: {capabilities.gpuTier.toUpperCase()} | Scale: {(capabilities.animationScale * 100).toFixed(0)}%
+              GPU: {governor.webGLQuality.toUpperCase()} | FPS: {governor.currentFPS} | Scale: {(governor.animationScale * 100).toFixed(0)}%{governor.isThrottled ? ' (THROTTLED)' : ''}
             </div>
           </div>
         </header>
@@ -438,5 +432,6 @@ export default function ClientLayout({
 
       <FloatingDialer />
     </div>
+    </ScrollProvider>
   )
 }

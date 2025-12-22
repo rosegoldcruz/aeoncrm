@@ -126,3 +126,245 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Scroll optimization for mobile */
+html {
+  scroll-behavior: auto; /* Disable smooth scroll on html for better mobile performance */
+}
+
+body {
+  /* Prevent layout shift during scroll */
+  overscroll-behavior-y: contain;
+  /* Prevent rubber banding on iOS */
+  -webkit-overflow-scrolling: auto;
+  /* Ensure proper touch handling */
+  touch-action: manipulation;
+}
+
+/* Lenis smooth scroll only on desktop */
+@media (min-width: 768px) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Prevent canvas from blocking touch events on mobile */
+@media (max-width: 767px) {
+  canvas {
+    pointer-events: none !important;
+    touch-action: none !important;
+  }
+
+  /* Ensure overlays don't block touch */
+  .fixed.inset-0.-z-10 {
+    pointer-events: none;
+  }
+
+  /* But allow interactive elements to receive touch */
+  .fixed.inset-0.-z-10 button,
+  .fixed.inset-0.-z-10 a,
+  .fixed.inset-0.-z-10 [role="button"] {
+    pointer-events: auto;
+  }
+}
+
+/* Performance optimizations */
+* {
+  /* Prevent layout thrashing */
+  contain: layout style paint;
+}
+
+/* Mobile Navigation Ergonomics */
+@media (max-width: 767px) {
+  /* Thumb-friendly navigation bar */
+  .thumb-navigation {
+    /* Ensure it's always accessible within thumb reach */
+    min-height: 64px;
+    /* Respect iPhone home indicator and Android navigation */
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    /* Prevent accidental taps */
+    touch-action: manipulation;
+  }
+
+  /* Larger touch targets for thumb navigation */
+  .thumb-nav-item {
+    min-height: 48px;
+    min-width: 48px;
+    /* Ensure proper spacing for thumb navigation */
+    margin: 0 2px;
+  }
+
+  /* Quick action button should be prominent */
+  .quick-action-btn {
+    /* Make it slightly larger for better thumb accessibility */
+    transform: scale(1.1);
+    /* Add subtle shadow for depth */
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+  }
+
+  /* Active states for better feedback */
+  .thumb-nav-item:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+
+  .quick-action-btn:active {
+    transform: scale(1.05);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Hide navigation on very small screens when keyboard is visible */
+@media (max-width: 767px) and (max-height: 500px) {
+  .thumb-navigation {
+    display: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .thumb-navigation {
+    border-top: 2px solid white;
+  }
+
+  .thumb-nav-item {
+    border-radius: 8px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .thumb-navigation {
+    transition: none !important;
+  }
+
+  .thumb-nav-item,
+  .quick-action-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Canvas / WebGL Containment - Critical for mobile */
+canvas,
+canvas * {
+  /* Never allow canvas to capture pointer events */
+  pointer-events: none !important;
+  /* Prevent touch action interference */
+  touch-action: none !important;
+  /* Ensure canvas stays in background */
+  z-index: -10 !important;
+}
+
+/* Three.js canvas specific */
+div[style*="position: fixed"] canvas {
+  pointer-events: none !important;
+  touch-action: none !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* React Three Fiber canvas wrapper */
+div[data-engine="three"] {
+  pointer-events: none !important;
+  touch-action: none !important;
+}
+
+/* Ensure interactive elements can still receive events */
+button,
+a,
+input,
+textarea,
+select,
+[role="button"],
+[tabindex]:not([tabindex="-1"]) {
+  pointer-events: auto !important;
+  touch-action: manipulation !important;
+}
+
+/* WebGL context loss handling */
+canvas[data-lost] {
+  display: none !important;
+}
+
+/* Performance monitoring for WebGL */
+@media (max-width: 767px) {
+  canvas {
+    /* Limit canvas size on mobile for performance */
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    /* Disable image smoothing for performance */
+    image-rendering: -webkit-optimize-speed !important;
+    image-rendering: optimize-speed !important;
+  }
+}
+
+/* Mobile-first typography - WCAG AA compliance */
+@media (max-width: 767px) {
+  /* Ensure all text is at least 14px equivalent */
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Scale headings appropriately for mobile */
+  h1 { font-size: 2rem; line-height: 1.2; }
+  h2 { font-size: 1.75rem; line-height: 1.3; }
+  h3 { font-size: 1.5rem; line-height: 1.4; }
+  h4 { font-size: 1.25rem; line-height: 1.4; }
+  h5 { font-size: 1.125rem; line-height: 1.4; }
+  h6 { font-size: 1rem; line-height: 1.4; }
+
+  /* Ensure readable body text */
+  p, li, dd {
+    font-size: 1rem; /* 16px */
+    line-height: 1.6;
+  }
+
+  /* Small text should still be readable */
+  small, .text-sm, .text-xs {
+    font-size: 0.875rem; /* 14px minimum */
+    line-height: 1.5;
+  }
+
+  /* Buttons and interactive elements */
+  button, a, input, select, textarea {
+    font-size: 1rem; /* 16px for accessibility */
+    min-height: 44px; /* WCAG touch target */
+    padding: 0.75rem 1rem;
+  }
+
+  /* Form elements */
+  input, select, textarea {
+    font-size: 1rem;
+  }
+}
+
+/* Improve text contrast and readability */
+.text-gray-400 {
+  color: #9ca3af;
+}
+
+.text-gray-300 {
+  color: #d1d5db;
+}
+
+.text-gray-500 {
+  color: #6b7280;
+}
+
+.text-gray-600 {
+  color: #4b5563;
+}
+
+/* Ensure sufficient color contrast for links */
+a {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+}
+
+a:hover, a:focus {
+  text-decoration-thickness: 3px;
+}

@@ -6,7 +6,9 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "audit:mobile": "node scripts/lighthouse-audit.js",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
@@ -74,6 +76,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/three": "^0.160.0",
+    "lighthouse": "^11.0.0",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",
     "typescript": "^5"

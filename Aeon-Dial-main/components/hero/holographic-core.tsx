@@ -3,31 +3,40 @@
 import { useRef } from "react"
 import { useFrame } from "@react-three/fiber"
 import * as THREE from "three"
+import { PerformanceGovernorState } from "@/hooks/use-performance-governor"
 
-export function HolographicCore({ scrollProgress }: { scrollProgress: number }) {
+export function HolographicCore({ scrollProgress, governor }: { scrollProgress: number, governor: PerformanceGovernorState }) {
   const coreRef = useRef<THREE.Group>(null)
   const geometryRef = useRef<THREE.Mesh>(null)
 
   useFrame((state) => {
     if (!coreRef.current || !geometryRef.current) return
 
-    const time = state.clock.elapsedTime
+    // Skip animations when throttled or offscreen
+    if (governor.isThrottled || !state.viewport.width) return
 
-    // Slow rotation
-    coreRef.current.rotation.y = time * 0.1
-    coreRef.current.rotation.x = Math.sin(time * 0.2) * 0.1
+    const time = state.clock.elapsedTime * governor.animationScale
 
-    // Breathing scale
-    const breathe = 1 + Math.sin(time * 0.5) * 0.05
+    // Slow rotation - reduce on low power
+    coreRef.current.rotation.y = time * (governor.isLowPowerMode ? 0.05 : 0.1)
+    if (!governor.isLowPowerMode) {
+      coreRef.current.rotation.x = Math.sin(time * 0.2) * 0.1
+    }
+
+    // Breathing scale - less intense on mobile/low power
+    const breatheScale = governor.isLowPowerMode ? 0.02 : 0.05
+    const breathe = 1 + Math.sin(time * 0.5) * breatheScale
     coreRef.current.scale.setScalar(breathe)
 
     // Parallax based on scroll
     coreRef.current.position.y = scrollProgress * -3
     coreRef.current.position.z = -15 + scrollProgress * 2
 
-    // Glow intensity
-    const material = geometryRef.current.material as THREE.MeshStandardMaterial
-    material.emissiveIntensity = 0.5 + scrollProgress * 0.5
+    // Glow intensity - only animate if WebGL effects are enabled and not low power
+    if (governor.enableWebGLEffects && !governor.isLowPowerMode) {
+      const material = geometryRef.current.material as THREE.MeshStandardMaterial
+      material.emissiveIntensity = 0.5 + scrollProgress * 0.5
+    }
   })
 
   return (
