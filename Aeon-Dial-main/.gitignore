@@ -29,5 +29,5 @@ next-env.d.ts
 # MCP Config (contains secrets)
 mcp_config.json
 
-# Supabase migrations (contains schema)
-supabase/
+# Supabase CLI migrations folder (contains schema)
+/supabase/
