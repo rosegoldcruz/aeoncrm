@@ -232,8 +232,7 @@ export default function ClientLayout({
   }
 
   return (
-    <ScrollProvider>
-      <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen">
       <motion.aside
         initial={false}
         animate={{ width: collapsed ? 80 : 256 }}
@@ -397,7 +396,7 @@ export default function ClientLayout({
       </motion.aside>
 
       {/* Main content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col min-h-0">
         <header className="h-16 bg-neutral-900 border-b border-neutral-800 flex items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <div className="text-sm text-neutral-400">
@@ -426,6 +425,5 @@ export default function ClientLayout({
 
       <FloatingDialer />
     </div>
-    </ScrollProvider>
   )
 }
