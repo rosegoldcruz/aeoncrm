@@ -1,12 +1,20 @@
 "use client"
 
 import { createContext, useContext, useEffect, useRef, useState } from "react"
-import Lenis from "lenis"
 import { useDeviceCapabilities } from "@/hooks/use-device-capabilities"
+
+// Lenis type for reference (actual import is dynamic)
+type LenisInstance = {
+  raf: (time: number) => void
+  scroll: number
+  limit: number
+  resize: () => void
+  destroy: () => void
+}
 
 interface ScrollContextValue {
   scrollProgress: number
-  lenis: Lenis | null
+  lenis: LenisInstance | null
   isNativeScroll: boolean
 }
 
@@ -15,7 +23,7 @@ const ScrollContext = createContext<ScrollContextValue | null>(null)
 export function ScrollProvider({ children }: { children: React.ReactNode }) {
   const capabilities = useDeviceCapabilities()
   const [scrollProgress, setScrollProgress] = useState(0)
-  const lenisRef = useRef<Lenis | null>(null)
+  const lenisRef = useRef<LenisInstance | null>(null)
   const rafRef = useRef<number | null>(null)
 
   // Use native scroll on mobile, Lenis on desktop
@@ -46,43 +54,53 @@ export function ScrollProvider({ children }: { children: React.ReactNode }) {
         window.removeEventListener("scroll", handleScroll)
       }
     } else {
-      // Desktop - use Lenis for smooth scrolling
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: "vertical",
-        gestureOrientation: "vertical",
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 2,
-        infinite: false,
+      // Desktop - dynamically import Lenis to avoid SSR issues
+      let mounted = true
+      
+      import("lenis").then((LenisModule) => {
+        if (!mounted) return
+        
+        const Lenis = LenisModule.default
+        const lenis = new Lenis({
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: "vertical",
+          gestureOrientation: "vertical",
+          smoothWheel: true,
+          wheelMultiplier: 1,
+          touchMultiplier: 2,
+          infinite: false,
+        })
+
+        lenisRef.current = lenis
+
+        // Update scroll progress
+        const updateProgress = () => {
+          const scrollTop = lenis.scroll || 0
+          const limit = lenis.limit || 1
+          const progress = Math.min(scrollTop / limit, 1)
+          setScrollProgress(progress)
+        }
+
+        // RAF loop for Lenis
+        const raf = (time: number) => {
+          lenis.raf(time)
+          updateProgress()
+          rafRef.current = requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
       })
 
-      lenisRef.current = lenis
-
-      // Update scroll progress
-      const updateProgress = () => {
-        const scrollTop = lenis.scroll || 0
-        const limit = lenis.limit || 1
-        const progress = Math.min(scrollTop / limit, 1)
-        setScrollProgress(progress)
-      }
-
-      // RAF loop for Lenis
-      const raf = (time: number) => {
-        lenis.raf(time)
-        updateProgress()
-        rafRef.current = requestAnimationFrame(raf)
-      }
-
-      requestAnimationFrame(raf)
-
       return () => {
+        mounted = false
         if (rafRef.current) {
           cancelAnimationFrame(rafRef.current)
         }
-        lenis.destroy()
-        lenisRef.current = null
+        if (lenisRef.current) {
+          lenisRef.current.destroy()
+          lenisRef.current = null
+        }
       }
     }
   }, [isNativeScroll])
