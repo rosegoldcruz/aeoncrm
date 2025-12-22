@@ -1,131 +1,99 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useScrollProgress } from "@/hooks/use-smooth-scroll"
-import { HeroScene } from "./scene"
-import { MagneticButton } from "./magnetic-button"
-import { PerformanceGovernorState } from "@/hooks/use-performance-governor"
-import { useDeviceCapabilities } from "@/hooks/use-device-capabilities"
-import { usePerformanceGovernor } from "@/hooks/use-performance-governor"
+import { useState } from "react"
+import Link from "next/link"
+import { Menu, X } from "lucide-react"
 
-export function CommandHero({ governor: governorProp }: { governor?: PerformanceGovernorState }) {
-  const capabilities = useDeviceCapabilities()
-  const [governor] = usePerformanceGovernor(capabilities)
-  const actualGovernor = governorProp || governor
-  const scrollProgress = useScrollProgress()
-
-  const opacity = scrollProgress > 0.5 ? 0.8 : scrollProgress > 0.1 ? 1 : 1
-  const scale = scrollProgress > 1 ? 0.95 : 1
+export function CommandHero() {
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="relative h-[150vh] bg-black">
-      <HeroScene scrollProgress={scrollProgress} governor={actualGovernor} />
+    <div className="relative min-h-screen bg-black">
+      {/* Simple gradient background - no WebGL complexity */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-neutral-900 to-black" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent" />
 
-      <motion.div
-        className="sticky top-0 h-screen flex flex-col items-center justify-center px-6"
-        style={{
-          opacity,
-          transform: `scale(${scale})`
-        }}
-      >
-        {/* Nav */}
-        <motion.nav
-          className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-6 z-50"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 * governor.animationScale, delay: 0.2 * governor.animationScale }}
-        >
-          <div className="text-2xl font-bold tracking-tight text-[#00ff88]">
-            AEON DIAL
-          </div>
-          <div className="flex items-center gap-8">
-            <a href="/dashboard" className="text-white/70 hover:text-white transition-colors">
-              Dashboard
-            </a>
-            <a href="/pricing" className="text-white/70 hover:text-white transition-colors">
-              Pricing
-            </a>
-            <a href="/docs" className="text-white/70 hover:text-white transition-colors">
-              Docs
-            </a>
-            <MagneticButton href="/dashboard" variant="primary">
-              Enter Command Center
-            </MagneticButton>
-          </div>
-        </motion.nav>
+      {/* Navigation - Simple, works everywhere */}
+      <nav className="relative z-50 flex items-center justify-between px-4 md:px-8 py-4 md:py-6">
+        <Link href="/" className="text-xl md:text-2xl font-bold text-orange-500">
+          AEON DIAL
+        </Link>
 
-        {/* Hero Content */}
-        <div className="max-w-6xl mx-auto text-center space-y-8">
-          {/* Headline */}
-          <div className="space-y-2">
-            {["THE CRM", "THAT THINKS", "IN REAL TIME"].map((line, i) => (
-              <motion.h1
-                key={i}
-                className="text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 * governor.animationScale, delay: 0.4 + i * 0.15 * governor.animationScale }}
-              >
-                {line}
-              </motion.h1>
-            ))}
-          </div>
-
-          {/* Subheadline */}
-          <motion.p
-            className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 * governor.animationScale, delay: 1.2 * governor.animationScale }}
+        {/* Desktop Nav */}
+        <div className="hidden md:flex items-center gap-6">
+          <Link 
+            href="/dashboard" 
+            className="text-white/70 hover:text-white transition-colors py-2 px-3"
           >
-            AI-powered calling, automation, and customer intelligence — unified.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 * governor.animationScale, delay: 1.4 * governor.animationScale }}
+            Dashboard
+          </Link>
+          <Link
+            href="/dashboard"
+            className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
           >
-            <MagneticButton href="/dashboard" variant="primary">
-              Launch AEON DIAL
-            </MagneticButton>
-            <MagneticButton href="#overview" variant="secondary">
-              Watch System Overview
-            </MagneticButton>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div
-            className="absolute bottom-12 left-1/2 -translate-x-1/2"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: scrollProgress < 0.1 ? 1 : 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="flex flex-col items-center gap-2 text-white/40">
-              <span className="text-sm uppercase tracking-wider">Scroll to explore</span>
-              <motion.div
-                className="w-[2px] h-12 bg-gradient-to-b from-[#00ff88] to-transparent"
-                animate={{ scaleY: [1, 1.5, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              />
-            </div>
-          </motion.div>
+            Launch App
+          </Link>
         </div>
 
-        {/* Signal Flow Text */}
-        <motion.div
-          className="absolute bottom-32 left-1/2 -translate-x-1/2 text-center"
-          style={{
-            opacity: scrollProgress > 0.3 && scrollProgress < 0.7 ? 1 : 0
-          }}
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden p-3 text-white"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
         >
-          <p className="text-lg text-[#00ff88] font-mono">
-            Every call. Every action. One system.
-          </p>
-        </motion.div>
-      </motion.div>
+          {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </nav>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-black pt-20 px-6 md:hidden">
+          <div className="flex flex-col items-center gap-8 py-8">
+            <Link 
+              href="/dashboard" 
+              className="text-xl text-white"
+              onClick={() => setMenuOpen(false)}
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="/dashboard"
+              className="bg-orange-500 hover:bg-orange-600 text-white font-medium py-4 px-8 rounded-lg text-lg"
+              onClick={() => setMenuOpen(false)}
+            >
+              Launch App
+            </Link>
+          </div>
+        </div>
+      )}
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-[calc(100vh-80px)] px-4 md:px-6 text-center">
+        {/* Headline */}
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-4 md:mb-6">
+          THE CRM THAT
+          <br />
+          <span className="text-orange-500">THINKS</span>
+        </h1>
+
+        {/* Subheadline */}
+        <p className="text-lg md:text-xl lg:text-2xl text-white/60 max-w-2xl mx-auto mb-8 md:mb-12 px-4">
+          AI-powered calling, automation, and customer intelligence — unified.
+        </p>
+
+        {/* Single Primary CTA */}
+        <Link
+          href="/dashboard"
+          className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 md:py-5 md:px-12 rounded-xl text-lg md:text-xl transition-colors shadow-lg shadow-orange-500/25"
+        >
+          Launch AEON DIAL
+        </Link>
+
+        {/* Trust indicator */}
+        <p className="mt-8 text-sm text-white/40">
+          No credit card required • Free to start
+        </p>
+      </div>
     </div>
   )
 }

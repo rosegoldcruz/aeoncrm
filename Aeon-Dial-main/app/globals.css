@@ -133,12 +133,12 @@ html {
 }
 
 body {
-  /* Prevent layout shift during scroll */
-  overscroll-behavior-y: contain;
-  /* Prevent rubber banding on iOS */
-  -webkit-overflow-scrolling: auto;
-  /* Ensure proper touch handling */
-  touch-action: manipulation;
+  /* Allow natural scroll behavior */
+  overscroll-behavior-y: auto;
+  /* Enable smooth iOS scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* Standard touch handling */
+  touch-action: auto;
 }
 
 /* Lenis smooth scroll only on desktop */
@@ -168,11 +168,8 @@ body {
   }
 }
 
-/* Performance optimizations */
-* {
-  /* Prevent layout thrashing */
-  contain: layout style paint;
-}
+/* Performance optimizations - be conservative */
+/* Removed aggressive contain rule that was breaking scroll */
 
 /* Mobile Navigation Ergonomics */
 @media (max-width: 767px) {

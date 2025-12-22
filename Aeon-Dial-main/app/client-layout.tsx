@@ -25,7 +25,6 @@ import { gsap } from "gsap"
 import { FloatingDialer } from "@/components/floating-dialer"
 import { ScrollProvider } from "@/hooks/use-smooth-scroll"
 import { useHapticFeedback } from "@/hooks/use-haptic-feedback"
-import { PerformanceDebugPanel } from "@/components/performance-debug-panel"
 import { useDeviceCapabilities } from "@/hooks/use-device-capabilities"
 import { usePerformanceGovernor } from "@/hooks/use-performance-governor"
 import { getAnimationConfig } from "@/lib/animation-config"
@@ -217,19 +216,14 @@ export default function ClientLayout({
   if (capabilities.isMobile) {
     return (
       <ScrollProvider>
-        <div className="flex flex-col h-screen overflow-hidden">
-          <header className="h-16 bg-neutral-900 border-b border-neutral-800 flex items-center justify-center px-4 flex-shrink-0">
-            <div className="text-center">
-              <h1 className="text-lg font-bold text-orange-500">AEON DIAL</h1>
-              <p className="text-[10px] text-neutral-500">v1.0.0</p>
-            </div>
+        <div className="flex flex-col min-h-screen">
+          <header className="h-14 bg-neutral-900 border-b border-neutral-800 flex items-center justify-center px-4 flex-shrink-0">
+            <h1 className="text-lg font-bold text-orange-500">AEON DIAL</h1>
           </header>
 
-          <main className="flex-1 overflow-y-auto bg-neutral-950">{children}</main>
+          <main className="flex-1 overflow-y-auto bg-neutral-950 pb-20">{children}</main>
 
           <ThumbNavigation navigation={navigation.filter((item) => !item.submenu)} />
-
-          <PerformanceDebugPanel />
 
           <FloatingDialer />
         </div>
