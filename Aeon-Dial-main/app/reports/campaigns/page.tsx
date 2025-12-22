@@ -711,7 +711,12 @@ export default function CampaignReportPage() {
                     cx="50%"
                     cy="50%"
                     labelLine={false}
-                    label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                    label={(props: any) => {
+                      const { name, value } = props
+                      const total = dispositionData.reduce((sum, entry) => sum + entry.value, 0)
+                      const percent = ((value / total) * 100).toFixed(0)
+                      return `${name} ${percent}%`
+                    }}
                     outerRadius={100}
                     fill="#8884d8"
                     dataKey="value"

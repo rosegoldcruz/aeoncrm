@@ -5,17 +5,17 @@ import { Suspense } from "react"
 import { motion } from "framer-motion"
 
 // Lazy load feature section
-const FeatureSection = dynamic(() => import("@/components/sections/feature-section"), {
+const FeatureSection = dynamic(() => import("@/components/sections/feature-section").then(mod => ({ default: mod.FeatureSection })), {
   loading: () => <FeatureSectionSkeleton />
 })
 
 // Lazy load about section
-const AboutSection = dynamic(() => import("@/components/sections/about-section"), {
+const AboutSection = dynamic(() => import("@/components/sections/about-section").then(mod => ({ default: mod.AboutSection })), {
   loading: () => <AboutSectionSkeleton />
 })
 
 // Lazy load CTA section
-const CTASection = dynamic(() => import("@/components/sections/cta-section"), {
+const CTASection = dynamic(() => import("@/components/sections/cta-section").then(mod => ({ default: mod.CTASection })), {
   loading: () => <CTASectionSkeleton />
 })
 

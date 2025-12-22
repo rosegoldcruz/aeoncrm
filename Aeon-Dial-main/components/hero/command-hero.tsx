@@ -1,11 +1,17 @@
 "use client"
 
+import { motion } from "framer-motion"
 import { useScrollProgress } from "@/hooks/use-smooth-scroll"
 import { HeroScene } from "./scene"
 import { MagneticButton } from "./magnetic-button"
 import { PerformanceGovernorState } from "@/hooks/use-performance-governor"
+import { useDeviceCapabilities } from "@/hooks/use-device-capabilities"
+import { usePerformanceGovernor } from "@/hooks/use-performance-governor"
 
-export function CommandHero({ governor }: { governor: PerformanceGovernorState }) {
+export function CommandHero({ governor: governorProp }: { governor?: PerformanceGovernorState }) {
+  const capabilities = useDeviceCapabilities()
+  const [governor] = usePerformanceGovernor(capabilities)
+  const actualGovernor = governorProp || governor
   const scrollProgress = useScrollProgress()
 
   const opacity = scrollProgress > 0.5 ? 0.8 : scrollProgress > 0.1 ? 1 : 1
@@ -13,7 +19,7 @@ export function CommandHero({ governor }: { governor: PerformanceGovernorState }
 
   return (
     <div className="relative h-[150vh] bg-black">
-      <HeroScene scrollProgress={scrollProgress} governor={governor} />
+      <HeroScene scrollProgress={scrollProgress} governor={actualGovernor} />
 
       <motion.div
         className="sticky top-0 h-screen flex flex-col items-center justify-center px-6"

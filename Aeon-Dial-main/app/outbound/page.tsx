@@ -488,14 +488,22 @@ export default function OutboundPage() {
                         </div>
 
                         <div className="flex items-center gap-4">
-                          <Checkbox id="no-sunday" checked={noCallSunday} onCheckedChange={setNoCallSunday} />
+                          <Checkbox 
+                            id="no-sunday" 
+                            checked={noCallSunday} 
+                            onCheckedChange={(checked) => setNoCallSunday(checked === true)} 
+                          />
                           <Label htmlFor="no-sunday" className="text-sm text-gray-300 cursor-pointer">
                             Do not call on Sunday
                           </Label>
                         </div>
 
                         <div className="flex items-center gap-4">
-                          <Checkbox id="no-holidays" checked={noCallHolidays} onCheckedChange={setNoCallHolidays} />
+                          <Checkbox 
+                            id="no-holidays" 
+                            checked={noCallHolidays} 
+                            onCheckedChange={(checked) => setNoCallHolidays(checked === true)} 
+                          />
                           <Label htmlFor="no-holidays" className="text-sm text-gray-300 cursor-pointer">
                             Do not call on Holidays
                           </Label>

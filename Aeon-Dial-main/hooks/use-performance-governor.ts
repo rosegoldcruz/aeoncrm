@@ -17,6 +17,7 @@ export interface PerformanceGovernorState {
   isThrottled: boolean
   isBackgrounded: boolean
   isLowPowerMode: boolean
+  batteryLevel: number | null
 
   // Controls
   enableWebGLEffects: boolean
@@ -45,6 +46,7 @@ export function usePerformanceGovernor(capabilities: DeviceCapabilities): [Perfo
       isThrottled: false,
       isBackgrounded: false,
       isLowPowerMode: capabilities.isLowPowerMode,
+      batteryLevel: capabilities.batteryLevel,
       enableWebGLEffects: baseQuality !== "low",
       enableAnimations: capabilities.animationScale > 0,
       enableParticles: baseQuality !== "low" && capabilities.memoryGB >= 4,

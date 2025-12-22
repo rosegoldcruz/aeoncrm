@@ -92,11 +92,11 @@ export function useCriticalResourcePreloader() {
     })
 
     // Preload critical images
-    const imageLinks = [
+    const imageLinks: { href: string }[] = [
       // Add critical hero images or icons here
     ]
 
-    imageLinks.forEach(({ href }) => {
+    imageLinks.forEach(({ href }: { href: string }) => {
       const link = document.createElement('link')
       link.rel = 'preload'
       link.href = href
