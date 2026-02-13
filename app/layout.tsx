@@ -3,6 +3,9 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import {
   ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedOut,
 } from "@clerk/nextjs"
 import { Inter } from "next/font/google"
 import "./globals.css"
@@ -49,6 +52,22 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-neutral-950 text-white antialiased`}>
         <ClerkProvider>
+          <header className="fixed right-4 top-4 z-50">
+            <SignedOut>
+              <div className="flex items-center gap-2">
+                <SignInButton>
+                  <button className="rounded-md border border-neutral-700 bg-neutral-900 px-3 py-1.5 text-sm text-white">
+                    Sign in
+                  </button>
+                </SignInButton>
+                <SignUpButton>
+                  <button className="rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600">
+                    Sign up
+                  </button>
+                </SignUpButton>
+              </div>
+            </SignedOut>
+          </header>
           <ClientLayout>{children}</ClientLayout>
         </ClerkProvider>
       </body>
