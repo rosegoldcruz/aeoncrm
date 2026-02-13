@@ -180,9 +180,9 @@ export default function CalendarsPage() {
         </div>
       </div>
 
-      <div className="flex h-[calc(100vh-8rem)]">
+      <div className="flex flex-col lg:flex-row min-h-[calc(100vh-8rem)]">
         {/* Left Sidebar */}
-        <div className="w-64 border-r border-neutral-800 bg-neutral-900 p-4 overflow-y-auto">
+        <div className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-neutral-800 bg-neutral-900 p-4 overflow-y-auto">
           {/* Mini Calendar */}
           <div className="mb-6">
             <div className="flex items-center justify-between mb-2">
@@ -257,8 +257,8 @@ export default function CalendarsPage() {
           {activeTab === "calendar" ? (
             <div className="h-full flex flex-col">
               {/* Calendar Controls */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-800">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between px-3 sm:px-6 py-4 border-b border-neutral-800">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4">
                   <div className="flex items-center gap-2">
                     <button onClick={previousMonth} className="p-2 hover:bg-neutral-800 rounded">
                       <ChevronLeft className="w-5 h-5" />
@@ -278,7 +278,7 @@ export default function CalendarsPage() {
                   </Button>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   <div className="flex items-center gap-1 bg-neutral-800 rounded-lg p-1">
                     <button
                       onClick={() => setView("month")}
@@ -313,8 +313,8 @@ export default function CalendarsPage() {
               </div>
 
               {/* Calendar Grid */}
-              <div className="flex-1 overflow-auto p-6">
-                <div className="grid grid-cols-7 gap-px bg-neutral-800 border border-neutral-800 rounded-lg overflow-hidden">
+              <div className="flex-1 overflow-auto p-3 sm:p-6">
+                <div className="grid grid-cols-7 gap-px bg-neutral-800 border border-neutral-800 rounded-lg overflow-hidden min-w-[700px]">
                   {/* Day headers */}
                   {["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map((day) => (
                     <div key={day} className="bg-neutral-900 p-3 text-center">

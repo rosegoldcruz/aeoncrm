@@ -133,9 +133,9 @@ export default function AnalyticsDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-black p-6 space-y-6 perspective-1000">
+    <div className="min-h-screen bg-black p-3 sm:p-6 space-y-4 sm:space-y-6 perspective-1000">
       <motion.div
-        className="flex items-center justify-between"
+        className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
@@ -154,25 +154,25 @@ export default function AnalyticsDashboard() {
           >
             <LayoutDashboard className="w-8 h-8 text-orange-500" />
           </motion.div>
-          <h1 className="text-3xl font-bold text-orange-500">Dashboard</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-orange-500">Dashboard</h1>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex w-full sm:w-auto items-center gap-3 sm:gap-4">
           {/* Date Range Selector */}
-          <div className="flex items-center gap-2 bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-2 hover:border-orange-500/50 transition-colors">
+          <div className="flex flex-1 sm:flex-none items-center gap-2 bg-neutral-900 border border-neutral-800 rounded-lg px-3 sm:px-4 py-2 hover:border-orange-500/50 transition-colors">
             <Calendar className="w-4 h-4 text-neutral-400" />
             <input
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="bg-transparent text-white text-sm border-none outline-none"
+              className="bg-transparent text-white text-xs sm:text-sm border-none outline-none min-w-0"
             />
             <span className="text-neutral-400">to</span>
             <input
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="bg-transparent text-white text-sm border-none outline-none"
+              className="bg-transparent text-white text-xs sm:text-sm border-none outline-none min-w-0"
             />
             <Calendar className="w-4 h-4 text-neutral-400" />
           </div>
@@ -184,7 +184,7 @@ export default function AnalyticsDashboard() {
       </motion.div>
 
       <motion.div
-        className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -205,7 +205,7 @@ export default function AnalyticsDashboard() {
                   <div className="flex items-center justify-between mb-4">
                     <CardTitle className="text-white text-lg">Opportunity Status</CardTitle>
                     <Select defaultValue="all">
-                      <SelectTrigger className="w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
+                      <SelectTrigger className="w-full sm:w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
                         <SelectValue placeholder="All Pipelines" />
                       </SelectTrigger>
                       <SelectContent>
@@ -231,7 +231,7 @@ export default function AnalyticsDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="flex items-center justify-between">
-                    <div className="relative w-40 h-40">
+                    <div className="relative w-32 h-32 sm:w-40 sm:h-40">
                       <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                           <Pie
@@ -282,7 +282,7 @@ export default function AnalyticsDashboard() {
                   <div className="flex items-center justify-between mb-4">
                     <CardTitle className="text-white text-lg">Opportunity Value</CardTitle>
                     <Select defaultValue="all">
-                      <SelectTrigger className="w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
+                      <SelectTrigger className="w-full sm:w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
                         <SelectValue placeholder="All Pipelines" />
                       </SelectTrigger>
                       <SelectContent>
@@ -342,7 +342,7 @@ export default function AnalyticsDashboard() {
                   <div className="flex items-center justify-between mb-4">
                     <CardTitle className="text-white text-lg">Conversion</CardTitle>
                     <Select defaultValue="all">
-                      <SelectTrigger className="w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
+                      <SelectTrigger className="w-full sm:w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
                         <SelectValue placeholder="All Pipelines" />
                       </SelectTrigger>
                       <SelectContent>
@@ -368,7 +368,7 @@ export default function AnalyticsDashboard() {
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-col items-center">
-                    <div className="relative w-40 h-40">
+                    <div className="relative w-32 h-32 sm:w-40 sm:h-40">
                       <svg className="w-full h-full transform -rotate-90">
                         <circle cx="80" cy="80" r="60" stroke="#262626" strokeWidth="12" fill="none" />
                         <circle
@@ -418,7 +418,7 @@ export default function AnalyticsDashboard() {
                   <div className="flex items-center justify-between mb-4">
                     <CardTitle className="text-white text-lg">Funnel</CardTitle>
                     <Select defaultValue="aeon">
-                      <SelectTrigger className="w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
+                      <SelectTrigger className="w-full sm:w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
                         <SelectValue placeholder="AEON Pipeline" />
                       </SelectTrigger>
                       <SelectContent>
@@ -489,7 +489,7 @@ export default function AnalyticsDashboard() {
                   <div className="flex items-center justify-between mb-4">
                     <CardTitle className="text-white text-lg">Stage Distribution</CardTitle>
                     <Select defaultValue="aeon">
-                      <SelectTrigger className="w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
+                      <SelectTrigger className="w-full sm:w-[140px] bg-neutral-800 border-neutral-700 text-white hover:border-orange-500/50 transition-colors">
                         <SelectValue placeholder="AEON Pipeline" />
                       </SelectTrigger>
                       <SelectContent>

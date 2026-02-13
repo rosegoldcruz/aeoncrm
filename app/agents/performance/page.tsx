@@ -159,7 +159,7 @@ export default function AgentPerformancePage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className="min-h-screen bg-black text-white p-3 sm:p-6">
       {/* Header */}
       <div className="mb-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
@@ -169,7 +169,7 @@ export default function AgentPerformancePage() {
 
         <div className="flex flex-wrap items-center gap-3">
           <Select value={dateRange} onValueChange={setDateRange}>
-            <SelectTrigger className="w-[140px] bg-neutral-900 border-neutral-800">
+            <SelectTrigger className="w-full sm:w-[140px] bg-neutral-900 border-neutral-800">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
@@ -205,7 +205,7 @@ export default function AgentPerformancePage() {
       </div>
 
       {/* Top Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
         {topMetrics.map((metric, index) => {
           const Icon = metric.icon
           return (
@@ -354,7 +354,7 @@ export default function AgentPerformancePage() {
           <div className="flex items-center gap-4 mb-6">
             <label className="text-neutral-400">Select Agent:</label>
             <Select value={selectedAgent} onValueChange={setSelectedAgent}>
-              <SelectTrigger className="w-[200px] bg-neutral-900 border-neutral-800">
+              <SelectTrigger className="w-full sm:w-[200px] bg-neutral-900 border-neutral-800">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -366,7 +366,7 @@ export default function AgentPerformancePage() {
             </Select>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
             {/* Call Distribution Pie Chart */}
             <Card className="bg-neutral-900 border-neutral-800 p-6">
               <h3 className="text-lg font-semibold text-white mb-4">Call Distribution</h3>

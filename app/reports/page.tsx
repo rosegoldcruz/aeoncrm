@@ -75,7 +75,7 @@ export default function ReportsPage() {
     <div className="min-h-screen bg-black">
       {/* Header Tabs */}
       <div className="border-b border-neutral-800 bg-neutral-950">
-        <div className="flex gap-1 px-6 overflow-x-auto">
+        <div className="flex gap-1 px-3 sm:px-6 overflow-x-auto">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -93,7 +93,7 @@ export default function ReportsPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex gap-8 p-8">
+      <div className="flex flex-col xl:flex-row gap-4 xl:gap-8 p-3 sm:p-6 xl:p-8">
         {/* Left Section */}
         <motion.div className="flex-1 space-y-6" variants={containerVariants} initial="hidden" animate="visible">
           {/* Title */}
@@ -116,7 +116,7 @@ export default function ReportsPage() {
             >
               <BarChart3 className="w-8 h-8 text-orange-500" />
             </motion.div>
-            <h1 className="text-3xl font-bold text-white">Reports Overview</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-white">Reports Overview</h1>
           </motion.div>
 
           {/* Checklist */}
@@ -167,7 +167,7 @@ export default function ReportsPage() {
 
         {/* Right Preview Panel */}
         <motion.div
-          className="w-[400px] flex-shrink-0"
+          className="w-full xl:w-[400px] flex-shrink-0"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const, delay: 0.3 }}

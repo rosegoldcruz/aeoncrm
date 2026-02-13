@@ -268,7 +268,7 @@ export default function LoginPage() {
   }, [])
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-neutral-950 px-4 py-10">
+    <main className="relative min-h-screen overflow-hidden bg-neutral-950 px-3 py-6 sm:px-4 sm:py-10">
       <motion.div
         className="absolute inset-0 bg-[linear-gradient(to_right,#242424_1px,transparent_1px),linear-gradient(to_bottom,#242424_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-80"
         animate={{ backgroundPosition: ["0px 0px", "64px 64px"] }}
@@ -277,7 +277,7 @@ export default function LoginPage() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(249,115,22,0.14),transparent_40%),radial-gradient(circle_at_80%_70%,rgba(255,255,255,0.08),transparent_45%)]" />
       <canvas
         ref={canvasRef}
-        className="pointer-events-none absolute inset-0 h-full w-full"
+        className="background-canvas pointer-events-none absolute inset-0 h-full w-full"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50" />
 
@@ -320,6 +320,7 @@ export default function LoginPage() {
           initial={{ opacity: 0, y: 16, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.45, ease: "easeOut" }}
+          className="w-full max-w-[420px]"
         >
           <SignIn
             path="/login"

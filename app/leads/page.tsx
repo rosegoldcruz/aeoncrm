@@ -138,7 +138,7 @@ export default function LeadsPage() {
 
         {/* Filters and Search */}
         <div className="flex flex-wrap gap-3">
-          <div className="flex-1 min-w-[300px]">
+          <div className="flex-1 min-w-0 md:min-w-[300px]">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
               <Input
@@ -150,7 +150,7 @@ export default function LeadsPage() {
             </div>
           </div>
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-[180px] bg-neutral-800 border-neutral-700">
+            <SelectTrigger className="w-full sm:w-[180px] bg-neutral-800 border-neutral-700">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent>
@@ -294,7 +294,7 @@ export default function LeadsPage() {
       {selectedLead && (
         <>
           <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setSelectedLead(null)} />
-          <div className="fixed right-0 top-0 bottom-0 w-[500px] bg-neutral-900 border-l border-neutral-800 z-50 overflow-y-auto">
+          <div className="fixed inset-y-0 right-0 w-full sm:w-[500px] bg-neutral-900 border-l border-neutral-800 z-50 overflow-y-auto">
             <div className="p-6 space-y-6">
               {/* Header */}
               <div className="flex items-start justify-between">

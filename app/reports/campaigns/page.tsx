@@ -188,7 +188,7 @@ export default function CampaignReportPage() {
   const selectedCampaignData = mockCampaigns.find((c) => c.id === Number.parseInt(selectedCampaign))
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-6">
+    <div className="min-h-screen bg-[#0a0a0a] p-3 sm:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
@@ -198,7 +198,7 @@ export default function CampaignReportPage() {
           </div>
           <div className="flex items-center gap-3">
             <Select defaultValue="7days">
-              <SelectTrigger className="w-[180px] bg-[#1a1a1a] border-gray-800">
+              <SelectTrigger className="w-full sm:w-[180px] bg-[#1a1a1a] border-gray-800">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -225,13 +225,13 @@ export default function CampaignReportPage() {
       </div>
 
       {/* Filter Bar */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex flex-wrap items-center gap-3 mb-6">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
           <Input placeholder="Search campaigns..." className="pl-10 bg-[#1a1a1a] border-gray-800" />
         </div>
         <Select defaultValue="all">
-          <SelectTrigger className="w-[150px] bg-[#1a1a1a] border-gray-800">
+          <SelectTrigger className="w-full sm:w-[150px] bg-[#1a1a1a] border-gray-800">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -247,7 +247,7 @@ export default function CampaignReportPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-6">
         <Card className="bg-[#1a1a1a] border-gray-800 p-4">
           <div className="flex items-center justify-between mb-3">
             <Users className="w-5 h-5 text-blue-500" />
@@ -579,7 +579,7 @@ export default function CampaignReportPage() {
               <div>
                 <label className="text-sm text-gray-400 mb-2 block">Select Campaign</label>
                 <Select value={selectedCampaign} onValueChange={setSelectedCampaign}>
-                  <SelectTrigger className="w-[300px] bg-[#0a0a0a] border-gray-800">
+                  <SelectTrigger className="w-full sm:w-[300px] bg-[#0a0a0a] border-gray-800">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>

@@ -109,7 +109,7 @@ export default function UserStatisticsPage() {
   const [searchQuery, setSearchQuery] = useState("")
 
   return (
-    <div className="min-h-screen bg-black p-6">
+    <div className="min-h-screen bg-black p-3 sm:p-6">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>

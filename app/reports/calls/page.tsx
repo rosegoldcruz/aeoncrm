@@ -208,7 +208,7 @@ export default function CallsReportPage() {
   const [selectedCalls, setSelectedCalls] = useState<number[]>([])
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-6">
+    <div className="min-h-screen bg-[#0a0a0a] p-3 sm:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
@@ -218,7 +218,7 @@ export default function CallsReportPage() {
           </div>
           <div className="flex items-center gap-3">
             <Select value={dateRange} onValueChange={setDateRange}>
-              <SelectTrigger className="w-[180px] bg-[#1a1a1a] border-gray-800 text-gray-200">
+              <SelectTrigger className="w-full sm:w-[180px] bg-[#1a1a1a] border-gray-800 text-gray-200">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-[#1a1a1a] border-gray-800">
@@ -268,7 +268,7 @@ export default function CallsReportPage() {
         {/* Advanced Filters Panel */}
         {showFilters && (
           <Card className="mt-4 p-4 bg-[#1a1a1a] border-gray-800">
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
               <div>
                 <label className="text-sm text-gray-300 mb-2 block">Call Type</label>
                 <Select>
@@ -356,7 +356,7 @@ export default function CallsReportPage() {
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-6">
         <Card className="p-4 bg-[#1a1a1a] border-gray-800">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-gray-300">Total Calls</span>
@@ -925,7 +925,7 @@ export default function CallsReportPage() {
           {/* Quality Metrics */}
           <div>
             <h3 className="text-xl font-semibold text-white mb-4">Quality Metrics</h3>
-            <div className="grid grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-4">
               <Card className="p-4 bg-[#1a1a1a] border-gray-800">
                 <div className="text-sm text-gray-400 mb-1">Avg Quality Score</div>
                 <div className="text-3xl font-bold text-white">87/100</div>
@@ -952,7 +952,7 @@ export default function CallsReportPage() {
           {/* Compliance Monitoring */}
           <div>
             <h3 className="text-xl font-semibold text-white mb-4">Compliance Monitoring</h3>
-            <div className="grid grid-cols-4 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-4">
               <Card className="p-4 bg-[#1a1a1a] border-gray-800">
                 <div className="text-sm text-gray-400 mb-1">Overall Compliance</div>
                 <div className="text-3xl font-bold text-green-500">96%</div>

@@ -153,7 +153,7 @@ export default function LeadsSearchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className="min-h-screen bg-black text-white p-3 sm:p-6">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-orange-500 mb-2">Lead Search</h1>

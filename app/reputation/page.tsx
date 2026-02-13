@@ -4,7 +4,7 @@ import { Star, ThumbsUp, ThumbsDown, TrendingUp, Network } from "lucide-react"
 
 export default function ReputationPage() {
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className="min-h-screen bg-black text-white p-3 sm:p-6">
       {/* Header Tabs */}
       <div className="border-b border-neutral-800 mb-6">
         <div className="flex gap-6">

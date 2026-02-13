@@ -194,7 +194,7 @@ export default function AgentReportPage() {
   const [selectedAgents, setSelectedAgents] = useState<typeof agentData>([])
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-6">
+    <div className="min-h-screen bg-[#0a0a0a] p-3 sm:p-6">
       {/* Header */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
@@ -204,7 +204,7 @@ export default function AgentReportPage() {
           </div>
           <div className="flex items-center gap-3">
             <Select value={dateRange} onValueChange={setDateRange}>
-              <SelectTrigger className="w-[180px] bg-[#1a1a1a] border-gray-700 text-gray-200">
+              <SelectTrigger className="w-full sm:w-[180px] bg-[#1a1a1a] border-gray-700 text-gray-200">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-[#1a1a1a] border-gray-700">
@@ -237,7 +237,7 @@ export default function AgentReportPage() {
 
       {/* Filter Bar */}
       <Card className="bg-[#1a1a1a] border-gray-800 p-4 mb-6">
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <Input placeholder="Search agents..." className="pl-10 bg-[#0a0a0a] border-gray-700 text-gray-200" />
@@ -288,7 +288,7 @@ export default function AgentReportPage() {
       </Card>
 
       {/* Top Summary Cards */}
-      <div className="grid grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-6">
         <Card className="bg-[#1a1a1a] border-gray-800 p-4">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-blue-500/10 rounded-lg">
@@ -548,7 +548,7 @@ export default function AgentReportPage() {
               value={selectedAgent.id}
               onValueChange={(id) => setSelectedAgent(agentData.find((a) => a.id === id) || agentData[0])}
             >
-              <SelectTrigger className="w-[300px] bg-[#0a0a0a] border-gray-700 text-gray-200">
+              <SelectTrigger className="w-full sm:w-[300px] bg-[#0a0a0a] border-gray-700 text-gray-200">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-[#1a1a1a] border-gray-700">
@@ -804,7 +804,7 @@ export default function AgentReportPage() {
         <TabsContent value="comparison" className="space-y-6">
           <Card className="bg-[#1a1a1a] border-gray-800 p-6">
             <h3 className="text-lg font-semibold text-white mb-4">Select Agents to Compare (2-6)</h3>
-            <div className="grid grid-cols-5 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4 mb-6">
               {agentData.map((agent) => (
                 <div
                   key={agent.id}

@@ -228,7 +228,7 @@ export default function AgentStatusPage() {
   const activeCalls = agents.filter((a) => a.status === "on-call")
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className="min-h-screen bg-black text-white p-3 sm:p-6">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-6">

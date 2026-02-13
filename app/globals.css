@@ -242,15 +242,10 @@ body {
   }
 }
 
-/* Canvas / WebGL Containment - Critical for mobile */
-canvas,
-canvas * {
-  /* Never allow canvas to capture pointer events */
+/* Canvas / WebGL Containment - scoped to intentional background canvases */
+.background-canvas {
   pointer-events: none !important;
-  /* Prevent touch action interference */
   touch-action: none !important;
-  /* Ensure canvas stays in background */
-  z-index: -10 !important;
 }
 
 /* Three.js canvas specific */
@@ -364,4 +359,59 @@ a {
 
 a:hover, a:focus {
   text-decoration-thickness: 3px;
+}
+
+/* Codebase-wide mobile safety net for fixed desktop utility classes */
+@media (max-width: 1023px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  [class*="w-[500px]"],
+  [class*="w-[400px]"],
+  [class*="w-[300px]"],
+  [class*="w-[250px]"],
+  [class*="w-[200px]"],
+  [class*="w-[180px]"],
+  [class*="w-[160px]"],
+  [class*="w-[150px]"],
+  [class*="w-[140px]"],
+  [class*="w-[120px]"],
+  [class*="w-[100px]"] {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  [class*="min-w-[300px]"],
+  [class*="min-w-[250px]"],
+  [class*="min-w-[200px]"],
+  [class*="min-w-[180px]"],
+  [class*="min-w-[160px]"],
+  [class*="min-w-[150px]"],
+  [class*="min-w-[140px]"],
+  [class*="min-w-[120px]"],
+  [class*="min-w-[100px]"] {
+    min-width: 0 !important;
+  }
+
+  [class*="grid-cols-5"],
+  [class*="grid-cols-6"],
+  [class*="grid-cols-7"],
+  [class*="grid-cols-8"] {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+
+  [class*="fixed right-0 top-0 bottom-0"] {
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+
+  [class*="text-5xl"],
+  [class*="text-6xl"] {
+    font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
+    line-height: 1.15 !important;
+  }
 }

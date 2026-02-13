@@ -142,7 +142,7 @@ export default function AIAgentsPage() {
 
             {/* Agent Filter */}
             <Select defaultValue="all">
-              <SelectTrigger className="w-[180px] bg-neutral-900 border-neutral-700">
+              <SelectTrigger className="w-full sm:w-[180px] bg-neutral-900 border-neutral-700">
                 <SelectValue placeholder="All Agents" />
               </SelectTrigger>
               <SelectContent>
@@ -168,7 +168,7 @@ export default function AIAgentsPage() {
         </div>
 
         {/* Metrics Dashboard - Top Row */}
-        <motion.div className="grid grid-cols-3 gap-6" variants={containerVariants} initial="hidden" animate="visible">
+        <motion.div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6" variants={containerVariants} initial="hidden" animate="visible">
           {/* Total Calls */}
           <motion.div variants={cardVariants}>
             <motion.div
@@ -314,7 +314,7 @@ export default function AIAgentsPage() {
         </motion.div>
 
         {/* Bottom Metrics */}
-        <motion.div className="grid grid-cols-2 gap-6" variants={containerVariants} initial="hidden" animate="visible">
+        <motion.div className="grid grid-cols-1 xl:grid-cols-2 gap-6" variants={containerVariants} initial="hidden" animate="visible">
           {/* Total Duration */}
           <motion.div variants={cardVariants}>
             <motion.div
@@ -421,7 +421,7 @@ export default function AIAgentsPage() {
                       Live
                     </Button>
                     <Select defaultValue="all-contacts">
-                      <SelectTrigger className="w-[160px] bg-neutral-800 border-neutral-700">
+                      <SelectTrigger className="w-full sm:w-[160px] bg-neutral-800 border-neutral-700">
                         <SelectValue placeholder="Contact name" />
                       </SelectTrigger>
                       <SelectContent>
@@ -429,7 +429,7 @@ export default function AIAgentsPage() {
                       </SelectContent>
                     </Select>
                     <Select defaultValue="all-actions">
-                      <SelectTrigger className="w-[160px] bg-neutral-800 border-neutral-700">
+                      <SelectTrigger className="w-full sm:w-[160px] bg-neutral-800 border-neutral-700">
                         <SelectValue placeholder="Action type" />
                       </SelectTrigger>
                       <SelectContent>

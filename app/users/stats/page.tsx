@@ -124,15 +124,15 @@ export default function UserStatsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black p-6">
-      <div className="mb-6 flex items-start justify-between">
+    <div className="min-h-screen bg-black p-3 sm:p-6">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="text-3xl font-bold text-orange-500">User Statistics</h1>
           <p className="text-neutral-400 text-sm mt-1">User performance and activity metrics</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <Select value={dateRange} onValueChange={setDateRange}>
-            <SelectTrigger className="w-[180px] bg-neutral-900 border-neutral-800 text-neutral-200">
+            <SelectTrigger className="w-full sm:w-[180px] bg-neutral-900 border-neutral-800 text-neutral-200">
               <SelectValue />
             </SelectTrigger>
             <SelectContent className="bg-neutral-900 border-neutral-800">
@@ -149,7 +149,7 @@ export default function UserStatsPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -219,7 +219,7 @@ export default function UserStatsPage() {
         </motion.div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
         <div className="lg:col-span-1">
           <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-4">
             <h3 className="text-white font-semibold mb-4">Filters</h3>
@@ -281,7 +281,7 @@ export default function UserStatsPage() {
                     placeholder="Search users..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-10 bg-neutral-800 border-neutral-700 text-neutral-200 w-64"
+                    className="pl-10 bg-neutral-800 border-neutral-700 text-neutral-200 w-full sm:w-64"
                   />
                 </div>
               </div>
@@ -354,7 +354,7 @@ export default function UserStatsPage() {
               <div className="text-neutral-400 text-sm">Showing 1-5 of 5 users</div>
               <div className="flex items-center gap-2">
                 <Select defaultValue="25">
-                  <SelectTrigger className="w-[100px] bg-neutral-800 border-neutral-700 text-neutral-200">
+                  <SelectTrigger className="w-full sm:w-[100px] bg-neutral-800 border-neutral-700 text-neutral-200">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="bg-neutral-900 border-neutral-800">

@@ -293,7 +293,7 @@ export default function TimeclockPage() {
           {/* Clock In/Out Button */}
           <Button
             onClick={handleClockToggle}
-            className={`w-[200px] h-14 text-lg font-semibold rounded-xl transition-all hover:scale-105 ${
+            className={`w-full sm:w-[200px] h-14 text-lg font-semibold rounded-xl transition-all hover:scale-105 ${
               isClockedIn ? "bg-red-500 hover:bg-red-600 text-white" : "bg-green-500 hover:bg-green-600 text-white"
             }`}
           >
@@ -306,7 +306,7 @@ export default function TimeclockPage() {
               <div className="flex items-center justify-between">
                 <Label className="text-white">Break Type</Label>
                 <Select value={breakType} onValueChange={(value: any) => setBreakType(value)} disabled={isOnBreak}>
-                  <SelectTrigger className="w-[150px] bg-neutral-800 border-white/10 text-white">
+                  <SelectTrigger className="w-full sm:w-[150px] bg-neutral-800 border-white/10 text-white">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent className="bg-neutral-800 border-white/10">
@@ -431,7 +431,7 @@ export default function TimeclockPage() {
           <h2 className="text-xl font-bold text-white">Time Entries</h2>
           <div className="flex gap-3">
             <Select defaultValue="week">
-              <SelectTrigger className="w-[150px] bg-neutral-800 border-white/10 text-white">
+              <SelectTrigger className="w-full sm:w-[150px] bg-neutral-800 border-white/10 text-white">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent className="bg-neutral-800 border-white/10">
@@ -445,7 +445,7 @@ export default function TimeclockPage() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
               <Input
                 placeholder="Search entries..."
-                className="pl-10 bg-neutral-800 border-white/10 text-white w-[250px]"
+                className="pl-10 bg-neutral-800 border-white/10 text-white w-full sm:w-[250px]"
               />
             </div>
           </div>
@@ -633,12 +633,12 @@ export default function TimeclockPage() {
           {/* Filters Bar */}
           <Card className="bg-neutral-900 border-white/10 p-4">
             <div className="flex flex-wrap items-center gap-3">
-              <div className="relative flex-1 min-w-[200px]">
+              <div className="relative flex-1 min-w-0 md:min-w-[200px]">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
                 <Input placeholder="Search employees..." className="pl-10 bg-neutral-800 border-white/10 text-white" />
               </div>
               <Select defaultValue="all-dept">
-                <SelectTrigger className="w-[180px] bg-neutral-800 border-white/10 text-white">
+                <SelectTrigger className="w-full sm:w-[180px] bg-neutral-800 border-white/10 text-white">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-neutral-800 border-white/10">
@@ -648,7 +648,7 @@ export default function TimeclockPage() {
                 </SelectContent>
               </Select>
               <Select defaultValue="all-status">
-                <SelectTrigger className="w-[150px] bg-neutral-800 border-white/10 text-white">
+                <SelectTrigger className="w-full sm:w-[150px] bg-neutral-800 border-white/10 text-white">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-neutral-800 border-white/10">
@@ -832,7 +832,7 @@ export default function TimeclockPage() {
           {viewMode === "calendar" && (
             <Card className="bg-neutral-900 border-white/10 p-6">
               <h2 className="text-xl font-bold text-white mb-4">Attendance Calendar - October 2025</h2>
-              <div className="grid grid-cols-7 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-7 gap-2">
                 {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
                   <div key={day} className="text-center text-sm font-semibold text-neutral-400 py-2">
                     {day}
@@ -923,7 +923,7 @@ export default function TimeclockPage() {
             <p className="text-neutral-400 mb-4">Generate payroll reports for accounting and HR systems</p>
             <div className="flex gap-3">
               <Select defaultValue="week">
-                <SelectTrigger className="w-[200px] bg-neutral-800 border-white/10 text-white">
+                <SelectTrigger className="w-full sm:w-[200px] bg-neutral-800 border-white/10 text-white">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="bg-neutral-800 border-white/10">
@@ -988,7 +988,7 @@ export default function TimeclockPage() {
   )
 
   return (
-    <div className="p-6 max-w-[1600px] mx-auto">
+    <div className="p-3 sm:p-6 max-w-[1600px] mx-auto">
       {console.log("[v0] Main container rendering")}
       {/* Header with Role Toggle */}
       <div className="flex items-center justify-between mb-6">

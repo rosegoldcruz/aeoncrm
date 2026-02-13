@@ -140,6 +140,7 @@ export default function ClientLayout({
 }) {
   const pathname = usePathname()
   const [collapsed, setCollapsed] = useState(false)
+  const [isMobileViewport, setIsMobileViewport] = useState(false)
   const [expandedMenus, setExpandedMenus] = useState<string[]>([])
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
   const auroraRef = useRef<HTMLDivElement>(null)
@@ -182,6 +183,18 @@ export default function ClientLayout({
     }
   }, [animConfig.enableMicroAnimations])
 
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const mediaQuery = window.matchMedia("(max-width: 1023px)")
+    const updateViewport = () => setIsMobileViewport(mediaQuery.matches)
+
+    updateViewport()
+    mediaQuery.addEventListener("change", updateViewport)
+
+    return () => mediaQuery.removeEventListener("change", updateViewport)
+  }, [])
+
   const toggleSubmenu = (name: string) => {
     vibrate("light")
     setExpandedMenus((prev) => (prev.includes(name) ? prev.filter((m) => m !== name) : [...prev, name]))
@@ -215,15 +228,15 @@ export default function ClientLayout({
     )
   }
 
-  if (capabilities.isMobile) {
+  if (capabilities.isMobile || isMobileViewport) {
     return (
       <ScrollProvider>
         <div className="flex flex-col min-h-screen">
-          <header className="h-14 bg-neutral-900 border-b border-neutral-800 flex items-center justify-center px-4 flex-shrink-0">
+          <header className="h-14 bg-neutral-900 border-b border-neutral-800 flex items-center justify-center px-4 flex-shrink-0 sticky top-0 z-30">
             <h1 className="text-lg font-bold text-orange-500">AEON DIAL</h1>
           </header>
 
-          <main className="flex-1 overflow-y-auto bg-neutral-950 pb-20">{children}</main>
+          <main className="flex-1 overflow-y-auto bg-neutral-950 pb-24">{children}</main>
 
           <ThumbNavigation navigation={navigation.filter((item) => !item.submenu)} />
 
@@ -423,7 +436,7 @@ export default function ClientLayout({
 
       {/* Main content */}
       <div className="flex-1 flex flex-col min-h-0">
-        <header className="h-16 bg-neutral-900 border-b border-neutral-800 flex items-center justify-between px-6">
+        <header className="h-16 bg-neutral-900 border-b border-neutral-800 flex items-center justify-between px-4 lg:px-6">
           <div className="flex items-center gap-4">
             <div className="text-sm text-neutral-400">
               {new Date().toLocaleDateString("en-US", {
@@ -440,7 +453,7 @@ export default function ClientLayout({
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               <span className="text-xs text-neutral-400">System Online</span>
             </div>
-            <div className="text-xs text-neutral-500">
+            <div className="hidden xl:block text-xs text-neutral-500">
               GPU: {governor.webGLQuality.toUpperCase()} | FPS: {governor.currentFPS} | Scale: {(governor.animationScale * 100).toFixed(0)}%{governor.isThrottled ? ' (THROTTLED)' : ''}
             </div>
           </div>

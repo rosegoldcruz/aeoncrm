@@ -72,7 +72,7 @@ export default function SettingsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] p-6 space-y-8">
+    <div className="min-h-screen bg-[#0a0a0a] p-3 sm:p-6 space-y-6 sm:space-y-8">
       {/* Header */}
       <div className="space-y-2">
         <div className="flex items-center gap-3">
@@ -87,7 +87,7 @@ export default function SettingsPage() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <Card className="bg-[#1a1a1a] border-neutral-800">
           <CardContent className="p-4">
             <div className="flex items-center justify-between">
@@ -213,7 +213,7 @@ export default function SettingsPage() {
       {/* Help Section */}
       <Card className="bg-gradient-to-r from-orange-500/10 to-orange-600/10 border-orange-500/20">
         <CardContent className="p-6">
-          <div className="flex items-start justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
             <div>
               <h3 className="text-lg font-semibold text-white mb-2">Need Help?</h3>
               <p className="text-sm text-gray-300 mb-4">Our support team is here to help you configure your system</p>

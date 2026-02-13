@@ -52,7 +52,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-neutral-950 text-white antialiased`}>
         <ClerkProvider>
-          <header className="fixed right-4 top-4 z-50">
+          <header className="fixed right-2 top-2 sm:right-4 sm:top-4 z-50">
             <SignedOut>
               <div className="flex items-center gap-2">
                 <SignInButton>

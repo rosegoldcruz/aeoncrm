@@ -171,7 +171,7 @@ export default function CommandCenterPage() {
           <CardContent>
             <div className="h-48 relative">
               {/* Chart Grid */}
-              <div className="absolute inset-0 grid grid-cols-8 grid-rows-6 opacity-20">
+              <div className="absolute inset-0 hidden sm:grid sm:grid-cols-8 sm:grid-rows-6 opacity-20">
                 {Array.from({ length: 48 }).map((_, i) => (
                   <div key={i} className="border border-neutral-700"></div>
                 ))}

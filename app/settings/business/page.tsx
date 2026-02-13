@@ -32,7 +32,7 @@ export default function BusinessSettingsPage() {
     <div className="min-h-screen bg-neutral-950">
       {/* Header */}
       <div className="border-b border-neutral-800 bg-neutral-900">
-        <div className="px-8 py-6">
+        <div className="px-3 sm:px-8 py-4 sm:py-6">
           <Link
             href="/settings"
             className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-orange-500 mb-4"
@@ -46,7 +46,7 @@ export default function BusinessSettingsPage() {
       </div>
 
       {/* Main Content */}
-      <main className="p-8">
+      <main className="p-3 sm:p-8">
         {/* Section 1: General Information */}
         <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-6 mb-6">
           <div className="flex items-center gap-2 mb-6">

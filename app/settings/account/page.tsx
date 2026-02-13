@@ -6,7 +6,7 @@ import { User, AlertTriangle, Download, Trash2, Camera, Check } from "lucide-rea
 
 export default function AccountSettingsPage() {
   return (
-    <div className="min-h-screen bg-black p-6">
+    <div className="min-h-screen bg-black p-3 sm:p-6">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-orange-500 flex items-center gap-3">

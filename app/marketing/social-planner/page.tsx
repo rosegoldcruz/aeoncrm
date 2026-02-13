@@ -114,7 +114,7 @@ export default function SocialPlannerPage() {
         </div>
       </div>
 
-      <div className="flex gap-6 p-6">
+      <div className="flex flex-col xl:flex-row gap-4 xl:gap-6 p-3 sm:p-6">
         {/* Main Content */}
         <div className="flex-1">
           {/* Hero Section */}
@@ -128,7 +128,7 @@ export default function SocialPlannerPage() {
           {/* Social Account Connections */}
           <div className="mb-8">
             <p className="text-sm text-neutral-400 mb-4">Select the social accounts you want to connect:</p>
-            <div className="grid grid-cols-5 gap-3 mb-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 mb-6">
               {socialPlatforms.map((platform) => {
                 const Icon = platform.icon
                 return (

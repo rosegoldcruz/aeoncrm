@@ -167,7 +167,7 @@ export default function TimesheetsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-white p-6">
+    <div className="min-h-screen bg-black text-white p-3 sm:p-6">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>

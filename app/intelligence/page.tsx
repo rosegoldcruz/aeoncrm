@@ -153,7 +153,7 @@ export default function IntelligencePage() {
       </div>
 
       {/* Stats and Search */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-4">
         <Card className="lg:col-span-2 bg-neutral-900 border-neutral-700">
           <CardContent className="p-4">
             <div className="relative">

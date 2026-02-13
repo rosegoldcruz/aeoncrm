@@ -16,7 +16,7 @@ export default function CreateCampaignPage() {
   const [scheduleEnabled, setScheduleEnabled] = useState(false)
 
   return (
-    <div className="min-h-screen bg-black p-6 space-y-6">
+    <div className="min-h-screen bg-black p-3 sm:p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">

@@ -56,7 +56,7 @@ export default function NotificationsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-black p-6">
+    <div className="min-h-screen bg-black p-3 sm:p-6">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-2">

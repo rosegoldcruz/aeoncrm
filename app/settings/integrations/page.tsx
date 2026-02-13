@@ -9,7 +9,7 @@ export default function IntegrationsPage() {
     <div className="min-h-screen bg-neutral-950">
       {/* Header */}
       <div className="border-b border-neutral-800 bg-neutral-900">
-        <div className="px-8 py-6">
+        <div className="px-3 sm:px-8 py-4 sm:py-6">
           <Link
             href="/settings/business"
             className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-orange-500 mb-4"
@@ -22,9 +22,9 @@ export default function IntegrationsPage() {
         </div>
       </div>
 
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row">
         {/* Left Sidebar Navigation */}
-        <aside className="w-64 border-r border-neutral-800 bg-neutral-900 min-h-screen">
+        <aside className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-neutral-800 bg-neutral-900 min-h-0 lg:min-h-screen">
           <nav className="p-4 space-y-1">
             <div className="mb-4">
               <h3 className="text-xs font-semibold text-neutral-500 uppercase mb-2">My Business</h3>

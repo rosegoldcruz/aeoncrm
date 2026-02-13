@@ -139,7 +139,7 @@ export default function AppointmentsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white p-6">
+    <div className="min-h-screen bg-[#0a0a0a] text-white p-3 sm:p-6">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center justify-between mb-2">
@@ -161,7 +161,7 @@ export default function AppointmentsPage() {
       </div>
 
       {/* Statistics Bar */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
         <Card className="bg-[#1a1a1a] border-gray-800 p-4">
           <div className="text-gray-400 text-sm mb-1">Total Appointments</div>
           <div className="text-3xl font-bold text-orange-500">{stats.total}</div>
@@ -186,7 +186,7 @@ export default function AppointmentsPage() {
       {/* Filter Bar */}
       <Card className="bg-[#1a1a1a] border-gray-800 p-4 mb-6">
         <div className="flex flex-wrap gap-4 items-center">
-          <div className="flex-1 min-w-[300px]">
+          <div className="flex-1 min-w-0 md:min-w-[300px]">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
@@ -198,7 +198,7 @@ export default function AppointmentsPage() {
             </div>
           </div>
           <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger className="w-[180px] bg-[#0a0a0a] border-gray-700">
+            <SelectTrigger className="w-full sm:w-[180px] bg-[#0a0a0a] border-gray-700">
               <SelectValue placeholder="Status" />
             </SelectTrigger>
             <SelectContent className="bg-[#1a1a1a] border-gray-700">
@@ -211,7 +211,7 @@ export default function AppointmentsPage() {
             </SelectContent>
           </Select>
           <Select value={typeFilter} onValueChange={setTypeFilter}>
-            <SelectTrigger className="w-[180px] bg-[#0a0a0a] border-gray-700">
+            <SelectTrigger className="w-full sm:w-[180px] bg-[#0a0a0a] border-gray-700">
               <SelectValue placeholder="Type" />
             </SelectTrigger>
             <SelectContent className="bg-[#1a1a1a] border-gray-700">
@@ -271,7 +271,7 @@ export default function AppointmentsPage() {
             >
               <div className="flex items-start gap-6">
                 {/* Date Badge */}
-                <div className="flex-shrink-0 text-center bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 rounded-lg p-4 min-w-[100px]">
+                <div className="flex-shrink-0 text-center bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 rounded-lg p-4 min-w-0 sm:min-w-[100px]">
                   <div className="text-orange-400 text-sm font-medium">
                     {new Date(appointment.date).toLocaleDateString("en-US", { weekday: "short" })}
                   </div>

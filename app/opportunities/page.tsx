@@ -142,7 +142,7 @@ export default function OpportunitiesPage() {
 
           {showFilters && (
             <div className="mt-4 p-4 bg-neutral-800/50 rounded-lg border border-neutral-700">
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
                 <div>
                   <label className="text-xs text-neutral-400 mb-2 block">Date Range</label>
                   <Select defaultValue="all">
@@ -348,7 +348,7 @@ export default function OpportunitiesPage() {
       {selectedOpportunity && (
         <>
           <div className="fixed inset-0 bg-black/50 z-40" onClick={() => setSelectedOpportunity(null)} />
-          <div className="fixed right-0 top-0 bottom-0 w-[500px] bg-neutral-900 border-l border-neutral-800 z-50 overflow-y-auto">
+          <div className="fixed inset-y-0 right-0 w-full sm:w-[500px] bg-neutral-900 border-l border-neutral-800 z-50 overflow-y-auto">
             <div className="p-6">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold">Opportunity Details</h2>
