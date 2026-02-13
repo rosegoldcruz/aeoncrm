@@ -35,8 +35,6 @@ import {
 } from "lucide-react"
 
 export default function TimeclockPage() {
-  console.log("[v0] TimeclockPage component is rendering")
-
   const [userRole, setUserRole] = useState<"agent" | "admin">("agent")
   const [isClockedIn, setIsClockedIn] = useState(false)
   const [isOnBreak, setIsOnBreak] = useState(false)
@@ -52,7 +50,6 @@ export default function TimeclockPage() {
   const [breakType, setBreakType] = useState<"lunch" | "short" | "personal">("short")
 
   useEffect(() => {
-    console.log("[v0] TimeclockPage mounted, userRole:", userRole)
     const timer = setInterval(() => {
       setCurrentTime(new Date())
     }, 1000)
@@ -989,7 +986,6 @@ export default function TimeclockPage() {
 
   return (
     <div className="p-3 sm:p-6 max-w-[1600px] mx-auto">
-      {console.log("[v0] Main container rendering")}
       {/* Header with Role Toggle */}
       <div className="flex items-center justify-between mb-6">
         <div>

@@ -1,5 +1,5 @@
 {
-  "name": "my-v0-project",
+  "name": "aeoncrm",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
     "lint": "eslint .",
     "start": "next start",
     "audit:mobile": "node scripts/lighthouse-audit.js",
+    "audit:routes": "node scripts/mobile-audit-routes.mjs",
     "analyze": "ANALYZE=true next build",
     "bootstrap": "tsx bootstrap/index.ts",
     "bootstrap:check": "tsx bootstrap/index.ts --check",

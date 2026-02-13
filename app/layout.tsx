@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Aeon Dialer",
   description: "A powerful call center dialer",
-  generator: "v0.app",
+  generator: "Aeon CRM",
   manifest: "/site.webmanifest",
   icons: {
     icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],

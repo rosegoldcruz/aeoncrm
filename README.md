@@ -1,30 +1,21 @@
-# Cyberpunk dashboard design
+# Aeon CRM
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+AI-native call center in a box built with Next.js and Clerk.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/elohim/v0-cyberpunk-dashboard-design)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/uwQmVWhjHoj)
+## Local development
 
-## Overview
+- Install dependencies: `pnpm install`
+- Run dev server: `pnpm dev`
+- Production build: `pnpm build`
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Core stack
 
-## Deployment
+- Next.js (App Router)
+- TypeScript
+- Tailwind CSS
+- Clerk authentication
 
-Your project is live at:
+## Notes
 
-**[https://vercel.com/elohim/v0-cyberpunk-dashboard-design](https://vercel.com/elohim/v0-cyberpunk-dashboard-design)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/uwQmVWhjHoj](https://v0.app/chat/uwQmVWhjHoj)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+- Mobile-first responsive UI across dashboard, reporting, operations, and settings flows.
+- Homepage and login share Aeon node-grid visual language.

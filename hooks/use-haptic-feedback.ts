@@ -21,8 +21,7 @@ export function useHapticFeedback() {
 
     try {
       navigator.vibrate(patterns[pattern])
-    } catch (e) {
-      console.log("[v0] Haptic feedback not available")
+    } catch {
     }
   }, [])
 

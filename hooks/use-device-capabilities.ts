@@ -46,8 +46,7 @@ export function useDeviceCapabilities(): DeviceCapabilities {
           const battery = await (navigator as any).getBattery()
           batteryLevel = battery.level
           isLowPowerMode = battery.level < 0.2 || battery.charging === false
-        } catch (e) {
-          console.log("[v0] Battery API not available")
+        } catch {
         }
       }
 
