@@ -8,7 +8,10 @@
     "lint": "eslint .",
     "start": "next start",
     "audit:mobile": "node scripts/lighthouse-audit.js",
-    "analyze": "ANALYZE=true next build"
+    "analyze": "ANALYZE=true next build",
+    "bootstrap": "tsx bootstrap/index.ts",
+    "bootstrap:check": "tsx bootstrap/index.ts --check",
+    "bootstrap:dry": "tsx bootstrap/index.ts --dry-run"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.12.6",
