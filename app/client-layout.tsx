@@ -4,6 +4,7 @@ import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
 import {
+  LogIn,
   Phone,
   Users,
   BarChart3,
@@ -17,6 +18,7 @@ import {
   Target,
   Calendar,
 } from "lucide-react"
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -392,6 +394,30 @@ export default function ClientLayout({
               </div>
             ))}
           </nav>
+
+          <div className="px-3 py-3 border-t border-neutral-800">
+            <SignedIn>
+              <Link
+                href="/settings/account"
+                className={`
+                  flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs font-medium transition-all
+                  ${pathname?.startsWith("/settings/account") ? "bg-orange-500/20 text-orange-500" : "text-neutral-400 hover:text-white hover:bg-neutral-800"}
+                `}
+              >
+                <Settings className="w-3.5 h-3.5 flex-shrink-0" />
+                {!collapsed && <span>Account Manager</span>}
+              </Link>
+            </SignedIn>
+
+            <SignedOut>
+              <SignInButton>
+                <button className="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg text-xs font-medium text-neutral-400 hover:text-white hover:bg-neutral-800 transition-all">
+                  <LogIn className="w-3.5 h-3.5 flex-shrink-0" />
+                  {!collapsed && <span>Sign In</span>}
+                </button>
+              </SignInButton>
+            </SignedOut>
+          </div>
         </div>
       </motion.aside>
 

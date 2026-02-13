@@ -76,8 +76,5 @@ mcp_config.json
 # Scripts with credentials
 apply_migration.sh
 
-# Supabase migrations (contains schema)
-supabase/
-
 # Google
 client_secret_for_google_auth.json
