@@ -72,9 +72,7 @@ export function NeuralGrid({ scrollProgress, governor }: { scrollProgress: numbe
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={positions.length / 3}
-            array={new Float32Array(positions)}
-            itemSize={3}
+            args={[new Float32Array(positions), 3]}
           />
         </bufferGeometry>
         <lineBasicMaterial color="#00ff88" transparent opacity={0.15} />
@@ -84,9 +82,7 @@ export function NeuralGrid({ scrollProgress, governor }: { scrollProgress: numbe
         <bufferGeometry>
           <bufferAttribute
             attach="attributes-position"
-            count={nodePositions.length / 3}
-            array={new Float32Array(nodePositions)}
-            itemSize={3}
+            args={[new Float32Array(nodePositions), 3]}
           />
         </bufferGeometry>
         <pointsMaterial

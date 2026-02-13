@@ -39,7 +39,8 @@ export function AboutSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, delay: 0.1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
             className="bg-neutral-900/50 rounded-2xl p-6 border border-neutral-800"
           >
             <p className="text-lg text-gray-400 leading-relaxed mb-4">
@@ -54,7 +55,8 @@ export function AboutSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, delay: 0.2 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
           >
             <p className="text-lg text-gray-400 leading-relaxed">
               Every feature is designed to eliminate busywork, close more deals, and scale your operation without hiring more people.
@@ -66,7 +68,8 @@ export function AboutSection() {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, delay: 0.3 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
               className="flex items-start gap-4 p-5 rounded-xl bg-gradient-to-r from-orange-500/10 to-orange-600/5 border border-orange-500/20"
             >
               <div className="flex-shrink-0 w-8 h-8 bg-orange-500/20 rounded-lg flex items-center justify-center mt-0.5">
@@ -81,7 +84,8 @@ export function AboutSection() {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, delay: 0.4 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
               className="flex items-start gap-4 p-5 rounded-xl bg-gradient-to-r from-purple-500/10 to-purple-600/5 border border-purple-500/20"
             >
               <div className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center mt-0.5">
@@ -96,7 +100,8 @@ export function AboutSection() {
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, delay: 0.5 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
               className="flex items-start gap-4 p-5 rounded-xl bg-gradient-to-r from-blue-500/10 to-blue-600/5 border border-blue-500/20"
             >
               <div className="flex-shrink-0 w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center mt-0.5">

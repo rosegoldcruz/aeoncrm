@@ -15,6 +15,13 @@ const nextConfig = {
 
   // Bundle analysis and optimization
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    if (isServer) {
+      config.output = {
+        ...config.output,
+        globalObject: 'globalThis',
+      }
+    }
+
     // Analyze bundle size in development
     if (!dev && !isServer) {
       config.plugins.push(
@@ -25,7 +32,7 @@ const nextConfig = {
     }
 
     // Optimize chunks for better caching
-    if (!dev) {
+    if (!dev && !isServer) {
       config.optimization = {
         ...config.optimization,
         splitChunks: {

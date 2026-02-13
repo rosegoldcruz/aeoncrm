@@ -14,8 +14,9 @@ dist/
 
 # Environment variables
 .env
-.env*.local
-.env.production
+.env.*
+!.env.example
+!.env*.example
 
 # Debug
 npm-debug.log*
@@ -26,6 +27,37 @@ yarn-error.log*
 # Local
 .DS_Store
 *.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.p8
+*.jks
+*.keystore
+*.mobileprovision
+*.ovpn
+
+# Secrets and credentials
+secrets/
+secret/
+credentials/
+*.secret
+*.kubeconfig
+.envrc
+.direnv/
+
+# Cloud/provider auth artifacts
+*service-account*.json
+*oauth*client*secret*.json
+firebase-adminsdk*.json
+.aws/
+.azure/
+.gcp/
+.terraform/
+*.tfvars
+*.tfstate
+*.tfstate.*
 
 # Vercel
 .vercel
@@ -46,3 +78,6 @@ apply_migration.sh
 
 # Supabase migrations (contains schema)
 supabase/
+
+# Google
+client_secret_for_google_auth.json
